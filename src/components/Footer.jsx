@@ -3,18 +3,15 @@ import Logo from './Logo.jsx'
 import { FOOTER_NAV, scrollToTop } from '../constants/nav.js'
 import { SITE, PHONE_DISPLAY, PHONE_TEL, GYM_SNS } from '../constants/site.js'
 
+// 白地のフッター（リデザイン 2026-10）: ロゴと所在地 ／ メニュー ／ 外部リンクとコピーライト
 export default function Footer() {
   const year = new Date().getFullYear()
   return (
     <footer className="site-footer">
-      <span className="color-strip" aria-hidden="true" />
-      <span className="ghost-word ghost-word--br" aria-hidden="true">
-        REGOLITH
-      </span>
       <div className="container site-footer__inner">
         <div className="site-footer__brand">
           <Link to="/" onClick={scrollToTop} aria-label={`${SITE.name} トップへ`}>
-            <Logo showName height={44} />
+            <Logo showName />
           </Link>
           <p className="site-footer__tagline">{SITE.tagline}</p>
           <address className="site-footer__address">
@@ -24,22 +21,19 @@ export default function Footer() {
           </address>
         </div>
 
-        <nav className="site-footer__nav" aria-label="フッターナビ">
-          <p className="site-footer__heading">MENU</p>
-          <ul>
-            {FOOTER_NAV.map((item) => (
-              <li key={item.to}>
-                <Link to={item.to} onClick={item.to.includes('#') ? undefined : scrollToTop}>
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-
-        <div className="site-footer__links">
-          <p className="site-footer__heading">OUR SERVICES</p>
-          <ul>
+        <div className="site-footer__menus">
+          <nav aria-label="フッターナビ">
+            <ul className="site-footer__nav">
+              {FOOTER_NAV.map((item) => (
+                <li key={item.to}>
+                  <Link to={item.to} onClick={item.to.includes('#') ? undefined : scrollToTop}>
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+          <ul className="site-footer__links" aria-label="運営サービス">
             <li>
               <a href={SITE.orbit.url} target="_blank" rel="noopener noreferrer">
                 {SITE.orbit.name}（ホームページ制作・運用）
@@ -60,9 +54,11 @@ export default function Footer() {
           </ul>
         </div>
       </div>
-      <p className="site-footer__copy">
-        <small>© {year} {SITE.name}</small>
-      </p>
+      <div className="container">
+        <p className="site-footer__copy">
+          <small>© {year} {SITE.name}</small>
+        </p>
+      </div>
     </footer>
   )
 }

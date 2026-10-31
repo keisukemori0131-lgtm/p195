@@ -1,16 +1,15 @@
 import { Link } from 'react-router-dom'
+import Icon from './Icon.jsx'
 import { SITE, PHONE_DISPLAY, PHONE_TEL } from '../constants/site.js'
 import { scrollToTop } from '../constants/nav.js'
+import { publicUrl } from '../lib/publicUrl.js'
 
-// 最終 CTA バンド（R12 #4）。名刺裏面の構成（黒地・透かし社名・欧文セリフ）に合わせる。
+// 最終 CTA バンド（R12 #4）。濃紺の宇宙 + 左下に大きな月（リデザイン 2026-10）。
 // 文言: 悩みに寄り添う見出し → 相談のハードルを下げる一文 → 何が得られるかが分かるボタン
 export default function CtaBand() {
   return (
-    <section className="cta-band reveal" aria-labelledby="cta-band-title">
-      <span className="color-strip" aria-hidden="true" />
-      <span className="ghost-word ghost-word--tl" aria-hidden="true">
-        REGOLITH
-      </span>
+    <section className="cta-band space reveal" aria-labelledby="cta-band-title">
+      <img className="cta-band__moon" src={publicUrl('/images/brand/moon.svg')} alt="" aria-hidden="true" width={600} height={600} loading="lazy" decoding="async" />
       <div className="container cta-band__inner">
         <p className="cta-band__tag serif-tag" lang="en">
           {SITE.slogan}
@@ -25,10 +24,14 @@ export default function CtaBand() {
         </p>
         <div className="cta-band__actions">
           <Link to="/contact" className="btn btn--light btn--lg" onClick={scrollToTop}>
+            <Icon name="mail" size={20} />
             フォームで相談する
+            <Icon name="arrow-right" size={16} />
           </Link>
           <a href={`tel:${PHONE_TEL}`} className="btn btn--outline-light btn--lg">
-            電話で相談する {PHONE_DISPLAY}
+            <Icon name="phone" size={20} />
+            <span className="cta-band__tel-label">電話で相談する</span>
+            <span className="cta-band__tel-num">{PHONE_DISPLAY}</span>
           </a>
         </div>
       </div>

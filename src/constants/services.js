@@ -59,6 +59,18 @@ export const SERVICES = [
   },
 ]
 
+// 各サービス・機能分類に添える線のアイコン（src/components/Icon.jsx の名前）
+export const SERVICE_ICONS = { recruit: 'users', orbit: 'monitor', fit: 'dumbbell' }
+export const FEATURE_ICONS = {
+  update: 'file',
+  inquiry: 'message',
+  reserve: 'calendar',
+  analytics: 'chart',
+  seo: 'search',
+  repeat: 'refresh',
+  base: 'shield',
+}
+
 // REGOLITH ORBIT の機能一覧（7分類・YAML の機能一覧をそのまま分類）。
 // 各機能に「困りごと → こう変わる」を添える（ブランドトーン・design.style）
 export const ORBIT_FEATURES = [

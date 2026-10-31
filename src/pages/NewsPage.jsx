@@ -23,15 +23,26 @@ export default function NewsPage() {
   return (
     <>
       <DocumentMeta jsonLd={jsonLd} />
-      <PageHero title="お知らせ" image="/images/news/cover.svg" alt="パールの地に月と色ブロックを配したお知らせのカバーイメージ" />
+      <PageHero title="お知らせ" eyebrow="NEWS" />
 
-      <section className="section">
+      <section className="section section--pearl">
         <div className="container">
-          <SectionHead eyebrow="NEWS" title="お知らせ一覧" lead="サービスに関するお知らせや、運営するジム「101FIT」の情報などを掲載しています。" />
           {isEnabled(slug) ? (
-            <ContentBoard slug={slug} basePath="/news" listLabel="お知らせ" emptyMessage={EMPTY_MESSAGES.news} onItems={handleItems} />
+            <ContentBoard
+              slug={slug}
+              basePath="/news"
+              listLabel="お知らせ"
+              emptyMessage={EMPTY_MESSAGES.news}
+              onItems={handleItems}
+              head={<SectionHead eyebrow="NEWS" title="お知らせ一覧" />}
+              lead="サービスに関するお知らせや、運営するジム「101FIT」の情報などを掲載しています。"
+            />
           ) : (
-            <p className="state-msg">現在公開中の情報はありません。</p>
+            <>
+              <SectionHead eyebrow="NEWS" title="お知らせ一覧" />
+              <p className="board-lead">サービスに関するお知らせや、運営するジム「101FIT」の情報などを掲載しています。</p>
+              <p className="state-msg">現在公開中の情報はありません。</p>
+            </>
           )}
         </div>
       </section>

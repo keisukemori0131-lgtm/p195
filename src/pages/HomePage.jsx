@@ -1,13 +1,12 @@
 import { Link } from 'react-router-dom'
 import DocumentMeta from '../components/DocumentMeta.jsx'
 import Hero from '../components/Hero.jsx'
-import Logo from '../components/Logo.jsx'
-import SectionHead from '../components/SectionHead.jsx'
+import Icon from '../components/Icon.jsx'
 import HomeContentExcerpt from '../components/HomeContentExcerpt.jsx'
 import CtaBand from '../components/CtaBand.jsx'
 import RepCard from '../components/RepCard.jsx'
 import { USP_CARDS, SITE } from '../constants/site.js'
-import { SERVICES, ORBIT_FEATURES } from '../constants/services.js'
+import { SERVICES, ORBIT_FEATURES, SERVICE_ICONS } from '../constants/services.js'
 import { scrollToTop } from '../constants/nav.js'
 import { CONTENT_TYPE_FOR, isEnabled } from '../config/upnoteContentTypes.js'
 import { EMPTY_MESSAGES } from '../lib/upnote.js'
@@ -19,46 +18,30 @@ const SERVICE_GROUPS = [
   { label: 'FITNESS GYM', items: SERVICES.filter((s) => s.id === 'fit') },
 ]
 
+// 選ばれる理由のカードのアイコン（USP_CARDS と同じ順）
+const USP_ICONS = ['handshake', 'monitor', 'users']
+
 // サービス紹介の冒頭に置く「よくある悩み → 解決するサービス」（YAML のターゲット層から）
 const PAINS = [
-  { text: '求人を出しても、応募が来ない', to: '求人情報コンサル' },
-  { text: 'ホームページがない／あっても更新できていない', to: 'REGOLITH ORBIT' },
-  { text: '予約や問い合わせの対応に追われている', to: 'REGOLITH ORBIT' },
+  { text: '求人を出しても、応募が来ない', to: '求人情報コンサル', icon: 'user' },
+  { text: 'ホームページがない／あっても更新できていない', to: 'REGOLITH ORBIT', icon: 'monitor' },
+  { text: '予約や問い合わせの対応に追われている', to: 'REGOLITH ORBIT', icon: 'phone' },
 ]
 
 // トップに出す「困りごと → こう変わる」のピックアップ（ORBIT 機能一覧から抜粋）
 const ORBIT_PICKS = [
-  ORBIT_FEATURES[0].items[0], // LINEからお知らせ投稿
-  ORBIT_FEATURES[1].items[0], // 受信箱＋LINE即時通知
-  ORBIT_FEATURES[4].items[0], // 採用ページ・Googleしごと検索対応
-  ORBIT_FEATURES[3].items[0], // 質問に一言で答えるアクセス分析
+  { ...ORBIT_FEATURES[0].items[0], icon: 'file', tone: 'green' }, // LINEからお知らせ投稿
+  { ...ORBIT_FEATURES[1].items[0], icon: 'message', tone: 'blue' }, // 受信箱＋LINE即時通知
+  { ...ORBIT_FEATURES[4].items[0], icon: 'users', tone: 'yellow' }, // 採用ページ・Googleしごと検索対応
+  { ...ORBIT_FEATURES[3].items[0], icon: 'chart', tone: 'red' }, // 質問に一言で答えるアクセス分析
 ]
 
-/** R12: ハブ構成のプレビューセクション（画像 + Eyebrow + 見出し + 説明 + ボタン） */
-function Preview({ id, eyebrow, title, children, image, reverse = false, actions }) {
+/** 欧文ラベル（左に置き、右に短い線） */
+function Eyebrow({ children, light = false }) {
   return (
-    <section className={`section preview${reverse ? ' preview--reverse' : ''}`} aria-labelledby={id}>
-      <div className="container preview__inner">
-        <div className="preview__media reveal">
-          <img
-            src={publicUrl(image.src)}
-            alt={image.alt}
-            width={image.w ?? 800}
-            height={image.h ?? 600}
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
-        <div className="preview__body reveal">
-          <span className="eyebrow">{eyebrow}</span>
-          <h2 id={id} className="preview__title">
-            {title}
-          </h2>
-          {children}
-          <div className="preview__actions">{actions}</div>
-        </div>
-      </div>
-    </section>
+    <span className={`eyebrow${light ? ' eyebrow--light' : ''}`} lang="en">
+      {children}
+    </span>
   )
 }
 
@@ -71,194 +54,220 @@ export default function HomePage() {
       <DocumentMeta />
       <Hero />
 
-      {/* R16-3: 選ばれる理由 + ロゴ */}
+      {/* R16-3: 選ばれる理由 */}
       <section className="section section--pearl" aria-labelledby="strength-title">
-        <span className="ghost-word ghost-word--tl" aria-hidden="true">
-          REGOLITH
-        </span>
         <div className="container">
-          <div className="section-logo reveal">
-            <Logo height={128} />
-          </div>
-          <div className="sec-head sec-head--center reveal">
-            <span className="eyebrow">OUR STRENGTH</span>
-            <h2 id="strength-title" className="sec-head__title">
-              自分たちで試して、効いた方法だけを。
-            </h2>
-            <p className="sec-head__lead">
+          <div className="head-split reveal">
+            <div>
+              <Eyebrow>OUR STRENGTH</Eyebrow>
+              <h2 id="strength-title" className="sec-head__title">
+                自分たちで試して、効いた方法だけを。
+              </h2>
+            </div>
+            <p className="head-split__lead">
               レゴリスは、石狩市でジム「{SITE.gym.name}」を運営し、自らの集客と採用に向き合ってきた会社です。
               そこで効果があった方法を、あなたの会社の求人とホームページに持ち込みます。
             </p>
           </div>
           <div className="usp-grid stagger">
-            {USP_CARDS.map((c, i) => (
-              <article className="usp-card" key={c.eyebrow}>
-                <span className="usp-card__no" aria-hidden="true">
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-                <span className="usp-card__eyebrow">{c.eyebrow}</span>
-                <h3 className="usp-card__title">{c.title}</h3>
-                <p className="usp-card__desc">{c.desc}</p>
-              </article>
-            ))}
+            {USP_CARDS.map((c, i) => {
+              const [no, en] = c.eyebrow.split(' / ')
+              return (
+                <article className="usp-card accent-card" key={c.eyebrow}>
+                  <div className="usp-card__top">
+                    <span className="usp-card__no" lang="en">
+                      {no}
+                      <span className="usp-card__en">{en}</span>
+                    </span>
+                    <Icon name={USP_ICONS[i]} size={40} strokeWidth={1.4} className="usp-card__icon" />
+                  </div>
+                  <h3 className="usp-card__title">{c.title}</h3>
+                  <p className="usp-card__desc">{c.desc}</p>
+                </article>
+              )
+            })}
           </div>
         </div>
       </section>
 
       {/* サービス（名刺裏面の ADVERTISING AGENCY / FITNESS GYM の 2 本柱で並べる） */}
-      <Preview
-        id="pv-services"
-        eyebrow="SERVICES"
-        title={
-          <>
-            人が来ない。問い合わせが来ない。
-            <br />
-            その悩み、まとめて相談できます。
-          </>
-        }
-        image={{ src: '/images/services/three-stars.svg', w: 800, h: 600, alt: '求人コンサル・REGOLITH ORBIT・101FIT を3つの色ブロックで表した図' }}
-        actions={
-          <Link to="/services" className="btn btn--primary" onClick={scrollToTop}>
-            3つのサービスを詳しく見る
-          </Link>
-        }
-      >
-        <ul className="pain-list">
-          {PAINS.map((p) => (
-            <li key={p.text}>
-              <span className="pain-list__text">{p.text}</span>
-              <span className="pain-list__to">→ {p.to}</span>
-            </li>
-          ))}
-        </ul>
-        {SERVICE_GROUPS.map((g) => (
-          <div key={g.label}>
-            <span className="star-list__group" lang="en">
-              {g.label}
-            </span>
-            <ul className="star-list">
-              {g.items.map((s) => (
-                <li key={s.id}>
-                  <Link to={`/services#${s.id}`} className={`star-list__item star-list__item--${s.id}`}>
-                    <span className="star-list__no">{s.no}</span>
-                    <span className="star-list__name">{s.name}</span>
-                    {s.sub && <span className="star-list__sub">{s.sub}</span>}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+      <section className="section" aria-labelledby="pv-services">
+        <div className="container">
+          <div className="services-head">
+            <div className="reveal">
+              <Eyebrow>SERVICES</Eyebrow>
+              <h2 id="pv-services" className="sec-head__title">
+                人が来ない。問い合わせが来ない。
+                <br />
+                その悩み、まとめて相談できます。
+              </h2>
+              <p className="services-head__action">
+                <Link to="/services" className="text-arrow" onClick={scrollToTop}>
+                  3つのサービスを詳しく見る
+                  <Icon name="arrow-right" size={16} />
+                </Link>
+              </p>
+            </div>
+            <div className="pain-box reveal">
+              <p className="pain-box__label">よくある悩み</p>
+              <ul className="pain-box__list">
+                {PAINS.map((p) => (
+                  <li key={p.text}>
+                    <Icon name={p.icon} size={22} />
+                    <span>
+                      <span className="pain-box__text">{p.text}</span>
+                      <span className="pain-box__to">→ {p.to}</span>
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-        ))}
-      </Preview>
+
+          <div className="service-groups">
+            {SERVICE_GROUPS.map((g) => (
+              <div className={`service-group service-group--${g.items.length}`} key={g.label}>
+                <p className="service-group__label" lang="en">
+                  {g.label}
+                </p>
+                <ul className="service-group__cards stagger">
+                  {g.items.map((s) => (
+                    <li key={s.id}>
+                      <Link to={`/services#${s.id}`} className="svc-card">
+                        <span className="svc-card__media">
+                          <img src={publicUrl(s.cover.src)} alt="" width={800} height={600} loading="lazy" decoding="async" />
+                        </span>
+                        <span className="svc-card__body">
+                          <Icon name={SERVICE_ICONS[s.id]} size={34} strokeWidth={1.4} className="svc-card__icon" />
+                          <span className="svc-card__text">
+                            <span className="svc-card__name">{s.name}</span>
+                            {s.sub && <span className="svc-card__sub">{s.sub}</span>}
+                            <span className="svc-card__catch">{s.catch}</span>
+                          </span>
+                          <span className="circle-arrow" aria-hidden="true">
+                            <Icon name="chevron-right" size={16} />
+                          </span>
+                        </span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* REGOLITH ORBIT のピックアップ（困りごと → こう変わる） */}
-      <section className="section section--dark" aria-labelledby="pv-orbit">
-        <span className="ghost-word ghost-word--br" aria-hidden="true">
-          ORBIT
-        </span>
-        <div className="container">
-          <div className="orbit-pick">
-            <div className="orbit-pick__head reveal">
-              <span className="eyebrow eyebrow--light">REGOLITH ORBIT</span>
-              <h2 id="pv-orbit" className="orbit-pick__title">
-                ホームページ、
-                <br />
-                公開してから止まっていませんか。
-              </h2>
-              <p className="orbit-pick__lead">
-                REGOLITH ORBIT は、つくった後の更新・問い合わせ対応・予約・分析まで回し続ける仕組みです。
-                パソコンを開く時間がない日でも、LINEから続けられます。
-              </p>
-              <img
-                className="orbit-pick__img"
-                src={publicUrl('/images/illustrations/reserve.png')}
-                alt="スマートフォンで操作する男性のイラスト"
-                width={410}
-                height={624}
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-            <ul className="change-list stagger">
-              {ORBIT_PICKS.map((f) => (
-                <li className="change-card" key={f.name}>
-                  <p className="change-card__name">{f.name}</p>
-                  <p className="change-card__pain">
-                    <span className="change-card__tag">困りごと</span>
-                    {f.pain}
-                  </p>
-                  <p className="change-card__gain">
-                    <span className="change-card__tag change-card__tag--gain">こう変わる</span>
-                    {f.gain}
-                  </p>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <p className="section-actions reveal">
-            <Link to="/services#orbit" className="btn btn--light" onClick={scrollToTop}>
+      <section className="section section--night" aria-labelledby="pv-orbit">
+        <div className="container orbit-pick">
+          <div className="orbit-pick__head reveal">
+            <Eyebrow light>REGOLITH ORBIT</Eyebrow>
+            <h2 id="pv-orbit" className="orbit-pick__title">
+              ホームページ、
+              <br />
+              公開してから止まっていませんか。
+            </h2>
+            <p className="orbit-pick__lead">
+              REGOLITH ORBIT は、つくった後の更新・問い合わせ対応・予約・分析まで回し続ける仕組みです。
+              パソコンを開く時間がない日でも、LINEから続けられます。
+            </p>
+            <Link to="/services#orbit" className="btn btn--outline-light" onClick={scrollToTop}>
               REGOLITH ORBIT でできることを見る
+              <Icon name="arrow-right" size={16} />
             </Link>
-          </p>
+          </div>
+          <ul className="orbit-tiles stagger">
+            {ORBIT_PICKS.map((f) => (
+              <li className="orbit-tile" key={f.name}>
+                <span className={`icon-badge icon-badge--${f.tone}`}>
+                  <Icon name={f.icon} size={26} />
+                </span>
+                <span className="orbit-tile__body">
+                  <span className="orbit-tile__name">{f.name}</span>
+                  <span className="orbit-tile__pain">困りごと：{f.pain}</span>
+                  <span className="orbit-tile__gain">→ {f.gain}</span>
+                </span>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
       {/* 会社概要（アクセスは会社概要の下部に統合） */}
-      <Preview
-        id="pv-company"
-        eyebrow="COMPANY"
-        title="石狩の会社だから、石狩の採用と集客を知っています。"
-        image={{ src: '/images/about/office.svg', w: 800, h: 600, alt: '灰色の月と石狩の地平線、色ブロックを組み合わせた会社のイメージ図' }}
-        reverse
-        actions={
-          <>
-            <Link to="/company" className="btn btn--primary" onClick={scrollToTop}>
-              レゴリスについて知る
-            </Link>
-            <Link to="/company#access" className="btn btn--ghost">
-              アクセスを見る
-            </Link>
-          </>
-        }
-      >
-        <p className="preview__text">
-          {SITE.address.city}花川に本社を置き、{SITE.serviceArea}の中小企業・店舗を支えています。
-          自分たちもこの地域で人を採用し、お客様を集めている当事者です。
-          社名の「レゴリス」は、月や惑星の表面を覆う砂のこと。地域の足元から、事業を次の軌道へ押し上げます。
-        </p>
-        <RepCard className="rep-card--compact" />
-      </Preview>
-
-      {/* お知らせ（R14-2: 3 件） */}
-      {isEnabled(newsSlug) && (
-        <section className="section section--tint" aria-labelledby="pv-news">
-          <div className="container">
-            <div className="list-head reveal">
-              <SectionHead eyebrow="NEWS" title={<span id="pv-news">お知らせ</span>} />
-              <Link to="/news" className="btn btn--ghost" onClick={scrollToTop}>
-                お知らせをすべて見る
+      <section className="section section--pearl" aria-labelledby="pv-company">
+        <div className="container about-split">
+          <div className="about-split__body reveal">
+            <Eyebrow>COMPANY</Eyebrow>
+            <h2 id="pv-company" className="sec-head__title">
+              石狩の会社だから、
+              <br />
+              石狩の採用と集客を知っています。
+            </h2>
+            <p className="about-split__text">
+              {SITE.address.city}花川に本社を置き、{SITE.serviceArea}の中小企業・店舗を支えています。
+              自分たちもこの地域で人を採用し、お客様を集めている当事者です。
+              社名の「レゴリス」は、月や惑星の表面を覆う砂のこと。地域の足元から、事業を次の軌道へ押し上げます。
+            </p>
+            <RepCard className="rep-card--compact" />
+            <div className="btn-row">
+              <Link to="/company" className="btn btn--primary" onClick={scrollToTop}>
+                レゴリスについて知る
+                <Icon name="arrow-right" size={16} />
+              </Link>
+              <Link to="/company#access" className="btn btn--ghost">
+                アクセスを見る
               </Link>
             </div>
-            <HomeContentExcerpt slug={newsSlug} basePath="/news" emptyMessage={EMPTY_MESSAGES.news} limit={3} />
           </div>
-        </section>
-      )}
+          <div className="about-split__media reveal">
+            <img
+              src={publicUrl('/images/about/office.svg')}
+              alt="灰色の月と石狩の地平線、色ブロックを組み合わせた会社のイメージ図"
+              width={800}
+              height={600}
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </div>
+      </section>
 
-      {/* コラム */}
-      {isEnabled(columnSlug) && (
-        <section className="section" aria-labelledby="pv-column">
-          <div className="container">
-            <div className="list-head reveal">
-              <SectionHead
-                eyebrow="COLUMN"
-                title={<span id="pv-column">コラム</span>}
-                lead="求人原稿の書き方から、ホームページの更新まで。明日から試せる採用と集客のヒントです。"
-              />
-              <Link to="/column" className="btn btn--ghost" onClick={scrollToTop}>
-                コラムをすべて読む
-              </Link>
-            </div>
-            <HomeContentExcerpt slug={columnSlug} basePath="/column" emptyMessage={EMPTY_MESSAGES.columns} limit={3} />
+      {/* お知らせ（R14-2: 3 件）＋ コラム */}
+      {(isEnabled(newsSlug) || isEnabled(columnSlug)) && (
+        <section className="section section--tight" aria-label="お知らせとコラム">
+          <div className="container updates">
+            {isEnabled(newsSlug) && (
+              <div className="updates__col updates__col--news reveal">
+                <div className="updates__head">
+                  <h2 className="updates__title" id="pv-news">
+                    <span className="mini-strip" aria-hidden="true" />
+                    お知らせ
+                  </h2>
+                  <Link to="/news" className="text-arrow" onClick={scrollToTop}>
+                    お知らせをすべて見る
+                    <Icon name="arrow-right" size={14} />
+                  </Link>
+                </div>
+                <HomeContentExcerpt slug={newsSlug} basePath="/news" emptyMessage={EMPTY_MESSAGES.news} limit={3} variant="list" />
+              </div>
+            )}
+            {isEnabled(columnSlug) && (
+              <div className="updates__col reveal">
+                <div className="updates__head">
+                  <h2 className="updates__title" id="pv-column">
+                    <span className="mini-strip" aria-hidden="true" />
+                    コラム
+                  </h2>
+                  <Link to="/column" className="text-arrow" onClick={scrollToTop}>
+                    コラムをすべて読む
+                    <Icon name="arrow-right" size={14} />
+                  </Link>
+                </div>
+                <p className="updates__lead">求人原稿の書き方から、ホームページの更新まで。明日から試せる採用と集客のヒントです。</p>
+                <HomeContentExcerpt slug={columnSlug} basePath="/column" emptyMessage={EMPTY_MESSAGES.columns} limit={3} />
+              </div>
+            )}
           </div>
         </section>
       )}

@@ -109,6 +109,33 @@ export function ContentCard({ item, basePath, showLead = true }) {
   )
 }
 
+/** トップのお知らせ: 日付・カテゴリ・タイトルの 1 行リスト（リデザイン 2026-10） */
+export function ContentRow({ item, basePath }) {
+  const title = getContentTitle(item)
+  const tag = getContentTags(item)[0]
+  return (
+    <Link to={`${basePath}/${item.id}`} className="content-row">
+      <span className="content-row__date">{formatContentDate(item)}</span>
+      {tag && <span className="tag-chip">{tag}</span>}
+      <span className="content-row__title">{title}</span>
+    </Link>
+  )
+}
+
+/** トップのコラム: 写真・タイトル・日付だけの小さなカード */
+export function ContentMiniCard({ item, basePath }) {
+  const title = getContentTitle(item)
+  return (
+    <Link to={`${basePath}/${item.id}`} className="content-card content-card--mini">
+      <CardMedia item={item} title={title} />
+      <span className="content-card__body">
+        <span className="content-card__title">{title}</span>
+        <span className="content-card__date">{formatContentDate(item)}</span>
+      </span>
+    </Link>
+  )
+}
+
 function SkeletonGrid() {
   return (
     <div className="skeleton-grid" aria-hidden="true">
@@ -128,8 +155,10 @@ function SkeletonGrid() {
  * @param {string} listLabel    一覧の名称（例 'お知らせ'）
  * @param {string} emptyMessage 0 件時のメッセージ
  * @param {(items: Array) => void} [onItems] 取得結果を親へ渡す（ItemList 構造化データ用）
+ * @param {ReactNode} [head]   一覧の見出し（件数表示と同じ行の左に置く）
+ * @param {string} [lead]      見出しの下の説明文
  */
-export default function ContentBoard({ slug, basePath, listLabel, emptyMessage, onItems }) {
+export default function ContentBoard({ slug, basePath, listLabel, emptyMessage, onItems, head, lead }) {
   const [page, setPage] = useState(1)
   const { data, loading, error, reload } = useContentList(slug, { page, limit: LIMIT })
 
@@ -154,21 +183,28 @@ export default function ContentBoard({ slug, basePath, listLabel, emptyMessage, 
 
   return (
     <div id="content-board" className="content-board">
+      <div className="board-top">
+        {head}
+        {data && items.length > 0 && (
+          <p className="board-count">
+            全<strong>{totalCount}</strong>件
+            <span aria-hidden="true" className="board-count__sep" />
+            {items.length}件を表示・{page}/{totalPages}ページ
+          </p>
+        )}
+      </div>
+      {lead && <p className="board-lead">{lead}</p>}
       {loading && !data && <SkeletonGrid />}
       {/* エラーは取得済みデータが無いときだけ（R14-5 データ優先） */}
       {!loading && error && !data && <ErrorMsg onRetry={reload} />}
       {data && items.length === 0 && <p className="state-msg">{emptyMessage}</p>}
       {data && items.length > 0 && (
         <>
-          <p className="board-count">
-            全<strong>{totalCount}</strong>件
-            <span aria-hidden="true" className="board-count__sep" />
-            {items.length}件を表示・{page}/{totalPages}ページ
-          </p>
           {latest && <FeaturedCard item={latest} basePath={basePath} />}
           {rest.length > 0 && (
             <>
               <h2 className="board-heading">
+                <span className="mini-blocks" aria-hidden="true" />
                 {isFirstPage ? `過去の${listLabel}` : `${listLabel}一覧`}
               </h2>
               <div className="content-grid stagger">

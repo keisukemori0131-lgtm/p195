@@ -4,7 +4,7 @@ import SectionHead from '../components/SectionHead.jsx'
 import ContactForm from '../components/ContactForm.jsx'
 import { FORM_KEYS } from '../lib/upnote.js'
 import { PHONE_DISPLAY, PHONE_TEL } from '../constants/site.js'
-import { publicUrl } from '../lib/publicUrl.js'
+import Icon from '../components/Icon.jsx'
 
 // 問い合わせ API が受け取れるのは { name, email, subject, message } のため、
 // 追加項目は ContactForm が message 末尾に整形して連結する（R6-upnote）
@@ -12,7 +12,7 @@ const EXTRA_FIELDS = [
   {
     name: 'topic',
     label: 'ご相談の内容',
-    type: 'select',
+    type: 'radio',
     required: true,
     options: [
       { value: '求人情報コンサル', label: '求人情報コンサル（求人原稿・採用活動）' },
@@ -29,32 +29,31 @@ export default function ContactPage() {
   return (
     <>
       <DocumentMeta />
-      <PageHero title="お問い合わせ" image="/images/nav/contact.svg" alt="パールの地に月と色ブロックを配したお問い合わせのカバーイメージ" />
+      <PageHero title="お問い合わせ" eyebrow="CONTACT" />
 
-      <section className="section">
-        <div className="container contact">
-          <div className="contact__intro reveal">
+      <section className="section section--intro">
+        <div className="container contact-intro">
+          <div className="reveal">
             <SectionHead
               eyebrow="CONTACT"
               title="お問い合わせ"
               lead="「求人を出しても応募が来ない」「ホームページを更新できていない」「予約や問い合わせの対応を楽にしたい」。まだ考えがまとまっていなくても大丈夫です。今の状況をそのままお聞かせください。"
             />
-            <div className="contact__tel">
-              <p className="contact__tel-label">お電話でのお問い合わせ</p>
-              <a href={`tel:${PHONE_TEL}`} className="contact__tel-num">
-                {PHONE_DISPLAY}
-              </a>
-            </div>
-            <img
-              className="contact__img"
-              src={publicUrl('/images/illustrations/partner.png')}
-              alt="握手をするビジネスパーソンのイラスト"
-              width={719}
-              height={631}
-              loading="lazy"
-              decoding="async"
-            />
           </div>
+          <div className="contact__tel reveal">
+            <p className="contact__tel-label">
+              <Icon name="phone" size={30} />
+              お電話でのお問い合わせ
+            </p>
+            <a href={`tel:${PHONE_TEL}`} className="contact__tel-num">
+              {PHONE_DISPLAY}
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section className="section section--pearl" aria-label="お問い合わせフォーム">
+        <div className="container">
           <div className="contact__form reveal">
             <ContactForm
               formKey={FORM_KEYS.contact}

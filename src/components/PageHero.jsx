@@ -1,15 +1,29 @@
-import { publicUrl } from '../lib/publicUrl.js'
+import { Link } from 'react-router-dom'
+import MoonOrbit from './MoonOrbit.jsx'
 
 /**
- * R16-4: サブページのページヒーロー。画像（SVG カバー）のみの帯で文言は重ねない。
- * ページタイトルは visually-hidden の h1 で保持（SEO・スクリーンリーダー用）。
- * ファーストビューのため loading="lazy" は付けない。
+ * サブページの見出し帯（リデザイン 2026-10）。
+ * 濃紺の宇宙 + 左端に名刺の色ブロックの縦帯 + 右に月と軌道。
+ * 左に 欧文ラベル → ページ名（h1）→ パンくず。
  */
-export default function PageHero({ title, image, alt }) {
+export default function PageHero({ title, eyebrow }) {
   return (
-    <div className="page-hero">
-      <img src={publicUrl(image)} alt={alt} width={1600} height={600} loading="eager" decoding="async" fetchpriority="high" />
-      <h1 className="visually-hidden">{title}</h1>
+    <div className="page-hero space">
+      <span className="v-strip page-hero__strip" aria-hidden="true" />
+      <MoonOrbit className="page-hero__moon" eager />
+      <div className="container page-hero__inner">
+        {eyebrow && (
+          <span className="eyebrow eyebrow--light" lang="en">
+            {eyebrow}
+          </span>
+        )}
+        <h1 className="page-hero__title">{title}</h1>
+        <nav className="breadcrumb breadcrumb--dark" aria-label="パンくず">
+          <Link to="/">ホーム</Link>
+          <span aria-hidden="true">›</span>
+          <span aria-current="page">{title}</span>
+        </nav>
+      </div>
     </div>
   )
 }

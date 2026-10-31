@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
 import { SITE } from '../constants/site.js'
 import { scrollToTop } from '../constants/nav.js'
+import { publicUrl } from '../lib/publicUrl.js'
+import Icon from './Icon.jsx'
 import { getContentTitle, getContentTags, getContentCategory } from '../lib/upnoteContent.js'
 
 // コラム末尾の導線。記事の内容に合わせて案内先を振り分ける（cre-comsence.com の ColumnCta 方式）
@@ -35,8 +37,8 @@ function pickTopic(item) {
 export default function ArticleCta({ item }) {
   const topic = pickTopic(item)
   return (
-    <section className="cta-band article-cta" aria-labelledby="article-cta-title">
-      <span className="color-strip" aria-hidden="true" />
+    <section className="cta-band article-cta space" aria-labelledby="article-cta-title">
+      <img className="cta-band__moon" src={publicUrl('/images/brand/moon.svg')} alt="" aria-hidden="true" width={600} height={600} loading="lazy" decoding="async" />
       <div className="container cta-band__inner">
         <p className="cta-band__tag serif-tag" lang="en">
           {SITE.slogan}
@@ -49,13 +51,16 @@ export default function ArticleCta({ item }) {
           {topic.primary.href ? (
             <a href={topic.primary.href} target="_blank" rel="noopener noreferrer" className="btn btn--light btn--lg">
               {topic.primary.label}
+              <Icon name="arrow-right" size={16} />
             </a>
           ) : (
             <Link to={topic.primary.to} className="btn btn--light btn--lg">
               {topic.primary.label}
+              <Icon name="arrow-right" size={16} />
             </Link>
           )}
           <Link to="/contact" className="btn btn--outline-light btn--lg" onClick={scrollToTop}>
+            <Icon name="mail" size={20} />
             {topic.secondary}
           </Link>
         </div>

@@ -21,7 +21,8 @@ import DocumentMeta from './DocumentMeta.jsx'
 import ErrorMsg from './ErrorMsg.jsx'
 import ArticleRichBody from './ArticleRichBody.jsx'
 import ArticleFaq from './ArticleFaq.jsx'
-import ArticleAuthorCard from './ArticleAuthorCard.jsx'
+import ArticleAuthorCard, { authorPhoto } from './ArticleAuthorCard.jsx'
+import MoonOrbit from './MoonOrbit.jsx'
 import ArticleCta from './ArticleCta.jsx'
 import { SITE, SITE_LABEL, SITE_URL } from '../constants/site.js'
 
@@ -38,7 +39,8 @@ function StatusBox({ children }) {
  * 記事詳細ページの共通実装（R14-3 / R14-3a）。表示方法は cre-comsence.com に合わせる:
  *   01 見出し帯: パンくず → 日付・カテゴリ・タグ → タイトル → サブタイトル → 著者
  *   02 紙面: 画像（切り抜かず全体を表示）→ 要約 → 本文（■見出し・箇条書き・番号付きを構造化）
- *            → よくある質問 → 著者カード → 詳細情報（上記以外の全フィールド）→ 一覧へ戻る・日付
+ *            → 詳細情報（上記以外の全フィールド）→ 一覧へ戻る・日付
+ *      紙面の下: よくある質問 → 著者（コラムのみ）
  *   03 導線: コラムのみ、記事の内容に合わせた案内（ArticleCta）
  * @param {string|number} id   記事 ID（useParams 由来）
  * @param {string} basePath    一覧のパス（例 '/news'）
@@ -139,8 +141,9 @@ export default function ArticleDetail({ id, basePath, listLabel, jsonLdType = 'N
 
       <article className="article">
         {/* 01 見出し帯 */}
-        <header className="article-hero">
-          <span className="color-strip" aria-hidden="true" />
+        <header className="article-hero space">
+          <span className="v-strip article-hero__strip" aria-hidden="true" />
+          <MoonOrbit className="article-hero__moon" eager />
           <div className="container article-hero__inner">
             <nav className="breadcrumb breadcrumb--dark" aria-label="パンくず">
               <Link to="/">ホーム</Link>
@@ -164,6 +167,9 @@ export default function ArticleDetail({ id, basePath, listLabel, jsonLdType = 'N
             {subtitle && <p className="article-hero__subtitle">{subtitle}</p>}
             {author && (
               <p className="article-hero__author">
+                {authorPhoto(author) && (
+                  <img className="article-hero__avatar" src={authorPhoto(author)} alt="" width={40} height={40} />
+                )}
                 {author.name}
                 {author.title && `（${author.title}）`}
                 {author.affiliation && ` / ${author.affiliation}`}
@@ -187,13 +193,14 @@ export default function ArticleDetail({ id, basePath, listLabel, jsonLdType = 'N
                 </div>
               )}
 
-              {summary && <p className="article-sheet__summary">{summary}</p>}
+              {summary && (
+                <div className="article-sheet__summary">
+                  <span className="article-sheet__summary-label">この記事の要約</span>
+                  <p>{summary}</p>
+                </div>
+              )}
 
               <ArticleRichBody body={body} />
-
-              <ArticleFaq items={faqItems} />
-
-              {jsonLdType === 'BlogPosting' && <ArticleAuthorCard author={author} />}
 
               {entries.length > 0 && (
                 <section className="article-sheet__extra" aria-labelledby="article-extra-title">
@@ -218,8 +225,23 @@ export default function ArticleDetail({ id, basePath, listLabel, jsonLdType = 'N
                 {date && <time dateTime={dateRaw}>{date}</time>}
               </div>
             </div>
+            {faqItems.length > 0 && (
+              <div className="article-after">
+                <ArticleFaq items={faqItems} />
+              </div>
+            )}
           </div>
         </section>
+
+        {jsonLdType === 'BlogPosting' && author && (
+          <section className="section section--tight article-author-section">
+            <div className="container">
+              <div className="article-after">
+                <ArticleAuthorCard author={author} />
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* 03 導線（コラムのみ・内容に合わせて振り分け） */}
         {jsonLdType === 'BlogPosting' && <ArticleCta item={item} />}

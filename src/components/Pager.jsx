@@ -19,9 +19,9 @@ export default function Pager({ current, totalPages, onChange }) {
         type="button"
         onClick={() => onChange(current - 1)}
         disabled={current <= 1}
-        aria-label="前のページ"
+        className="pager__step"
       >
-        ‹
+        <span aria-hidden="true">← </span>前へ
       </button>
       {pages.map((p, i) =>
         p === '…' ? (
@@ -44,9 +44,9 @@ export default function Pager({ current, totalPages, onChange }) {
         type="button"
         onClick={() => onChange(current + 1)}
         disabled={current >= totalPages}
-        aria-label="次のページ"
+        className="pager__step"
       >
-        ›
+        次へ<span aria-hidden="true"> →</span>
       </button>
     </nav>
   )

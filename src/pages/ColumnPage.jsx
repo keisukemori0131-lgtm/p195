@@ -22,19 +22,26 @@ export default function ColumnPage() {
   return (
     <>
       <DocumentMeta jsonLd={jsonLd} />
-      <PageHero title="コラム" image="/images/column/cover.svg" alt="パールの地に開いたノートと色ブロックを配したコラムのカバーイメージ" />
+      <PageHero title="コラム" eyebrow="COLUMN" />
 
-      <section className="section">
+      <section className="section section--pearl">
         <div className="container">
-          <SectionHead
-            eyebrow="COLUMN"
-            title="コラム一覧"
-            lead="求人原稿の書き方、Googleしごと検索、ホームページの更新や問い合わせ対応。自社ジムの運営で試してきたことをもとに、明日から使える採用と集客のヒントをお届けします。"
-          />
           {isEnabled(slug) ? (
-            <ContentBoard slug={slug} basePath="/column" listLabel="コラム" emptyMessage={EMPTY_MESSAGES.columns} onItems={handleItems} />
+            <ContentBoard
+              slug={slug}
+              basePath="/column"
+              listLabel="コラム"
+              emptyMessage={EMPTY_MESSAGES.columns}
+              onItems={handleItems}
+              head={<SectionHead eyebrow="COLUMN" title="コラム一覧" />}
+              lead="求人原稿の書き方、Googleしごと検索、ホームページの更新や問い合わせ対応。自社ジムの運営で試してきたことをもとに、明日から使える採用と集客のヒントをお届けします。"
+            />
           ) : (
-            <p className="state-msg">現在公開中の情報はありません。</p>
+            <>
+              <SectionHead eyebrow="COLUMN" title="コラム一覧" />
+              <p className="board-lead">求人原稿の書き方、Googleしごと検索、ホームページの更新や問い合わせ対応。自社ジムの運営で試してきたことをもとに、明日から使える採用と集客のヒントをお届けします。</p>
+              <p className="state-msg">現在公開中の情報はありません。</p>
+            </>
           )}
         </div>
       </section>
