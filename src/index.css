@@ -1101,7 +1101,19 @@ main {
   height: 1px;
   background: var(--c-line);
 }
+/* 2 つのグループを並べても、3 枚のカードの縦幅がそろうように（グループ → 一覧 → カードを伸ばす） */
+.service-group {
+  display: flex;
+  flex-direction: column;
+}
+.service-group__cards > li {
+  display: flex;
+}
+.service-group__cards > li > .svc-card {
+  flex: 1;
+}
 .service-group__cards {
+  flex: 1;
   list-style: none;
   margin: 0;
   padding: 0;
