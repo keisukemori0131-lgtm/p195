@@ -5,12 +5,19 @@ import Logo from '../components/Logo.jsx'
 import SectionHead from '../components/SectionHead.jsx'
 import HomeContentExcerpt from '../components/HomeContentExcerpt.jsx'
 import CtaBand from '../components/CtaBand.jsx'
+import RepCard from '../components/RepCard.jsx'
 import { USP_CARDS, SITE } from '../constants/site.js'
 import { SERVICES, ORBIT_FEATURES } from '../constants/services.js'
 import { scrollToTop } from '../constants/nav.js'
 import { CONTENT_TYPE_FOR, isEnabled } from '../config/upnoteContentTypes.js'
 import { EMPTY_MESSAGES } from '../lib/upnote.js'
 import { publicUrl } from '../lib/publicUrl.js'
+
+// 名刺裏面の 2 本柱（ADVERTISING AGENCY / FITNESS GYM）で事業をまとめる
+const SERVICE_GROUPS = [
+  { label: 'ADVERTISING AGENCY', items: SERVICES.filter((s) => s.id !== 'fit') },
+  { label: 'FITNESS GYM', items: SERVICES.filter((s) => s.id === 'fit') },
+]
 
 // トップに出す「困りごと → こう変わる」のピックアップ（ORBIT 機能一覧から抜粋）
 const ORBIT_PICKS = [
@@ -58,8 +65,10 @@ export default function HomePage() {
       <Hero />
 
       {/* R16-3: 選ばれる理由 + ロゴ */}
-      <section className="section section--strength" aria-labelledby="strength-title">
-        <div className="orbit-line orbit-line--a" aria-hidden="true" />
+      <section className="section section--pearl" aria-labelledby="strength-title">
+        <span className="ghost-word ghost-word--tl" aria-hidden="true">
+          REGOLITH
+        </span>
         <div className="container">
           <div className="section-logo reveal">
             <Logo height={128} />
@@ -89,12 +98,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* サービス（3事業を軌道上の3つの星として） */}
+      {/* サービス（名刺裏面の ADVERTISING AGENCY / FITNESS GYM の 2 本柱で並べる） */}
       <Preview
         id="pv-services"
         eyebrow="SERVICES"
         title="3つの事業で、採用と集客を前へ。"
-        image={{ src: '/images/services/three-stars.svg', w: 800, h: 600, alt: '求人コンサル・REGOLITH ORBIT・101FIT の3つの星が同じ軌道を回る図' }}
+        image={{ src: '/images/services/three-stars.svg', w: 800, h: 600, alt: '求人コンサル・REGOLITH ORBIT・101FIT を3つの色ブロックで表した図' }}
         actions={
           <Link to="/services" className="btn btn--primary" onClick={scrollToTop}>
             サービスを見る
@@ -105,22 +114,31 @@ export default function HomePage() {
           求人原稿で応募の入口をつくり、ホームページで見つけてもらい、自社ジムで方法を確かめる。
           3つの事業は、同じ軌道の上でつながっています。
         </p>
-        <ul className="star-list">
-          {SERVICES.map((s) => (
-            <li key={s.id}>
-              <Link to={`/services#${s.id}`} className="star-list__item">
-                <span className="star-list__no">{s.no}</span>
-                <span className="star-list__name">{s.name}</span>
-                {s.sub && <span className="star-list__sub">{s.sub}</span>}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        {SERVICE_GROUPS.map((g) => (
+          <div key={g.label}>
+            <span className="star-list__group" lang="en">
+              {g.label}
+            </span>
+            <ul className="star-list">
+              {g.items.map((s) => (
+                <li key={s.id}>
+                  <Link to={`/services#${s.id}`} className={`star-list__item star-list__item--${s.id}`}>
+                    <span className="star-list__no">{s.no}</span>
+                    <span className="star-list__name">{s.name}</span>
+                    {s.sub && <span className="star-list__sub">{s.sub}</span>}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
       </Preview>
 
       {/* REGOLITH ORBIT のピックアップ（困りごと → こう変わる） */}
       <section className="section section--dark" aria-labelledby="pv-orbit">
-        <div className="orbit-line orbit-line--b" aria-hidden="true" />
+        <span className="ghost-word ghost-word--br" aria-hidden="true">
+          ORBIT
+        </span>
         <div className="container">
           <div className="orbit-pick">
             <div className="orbit-pick__head reveal">
@@ -160,7 +178,7 @@ export default function HomePage() {
             </ul>
           </div>
           <p className="section-actions reveal">
-            <Link to="/services#orbit" className="btn btn--primary" onClick={scrollToTop}>
+            <Link to="/services#orbit" className="btn btn--light" onClick={scrollToTop}>
               REGOLITH ORBIT の機能一覧を見る
             </Link>
           </p>
@@ -172,7 +190,7 @@ export default function HomePage() {
         id="pv-company"
         eyebrow="COMPANY"
         title="石狩から、地域の推進力に。"
-        image={{ src: '/images/about/office.svg', w: 800, h: 600, alt: '石狩の地平線の上を軌道線が横切る会社のイメージ図' }}
+        image={{ src: '/images/about/office.svg', w: 800, h: 600, alt: '灰色の月と石狩の地平線、色ブロックを組み合わせた会社のイメージ図' }}
         reverse
         actions={
           <>
@@ -190,6 +208,7 @@ export default function HomePage() {
           {SITE.address.city}を拠点に、{SITE.serviceArea}の中小企業・店舗の足元から、
           事業を次の軌道へ押し上げる推進力をつくります。
         </p>
+        <RepCard className="rep-card--compact" />
       </Preview>
 
       {/* お知らせ（R14-2: 3 件） */}

@@ -8,7 +8,7 @@ export const SERVICES = [
   {
     id: 'recruit',
     no: '01',
-    eyebrow: 'RECRUIT CONSULTING',
+    eyebrow: 'ADVERTISING AGENCY / RECRUIT',
     name: '求人情報コンサル',
     catch: '伝わる求人原稿で、応募の入口をつくる。',
     summary:
@@ -22,12 +22,12 @@ export const SERVICES = [
       },
     ],
     image: { src: '/images/illustrations/meeting.png', w: 828, h: 608, alt: '求人原稿について打ち合わせをする二人のイラスト' },
-    cover: { src: '/images/services/recruit.svg', alt: '求人原稿と応募の矢印を軌道線で結んだ図' },
+    cover: { src: '/images/services/recruit.svg', alt: '求人原稿と応募者を色ブロックで結んだ図' },
   },
   {
     id: 'orbit',
     no: '02',
-    eyebrow: 'WEB PRODUCTION & OPERATION',
+    eyebrow: 'ADVERTISING AGENCY / WEB',
     name: 'REGOLITH ORBIT',
     sub: 'ホームページ制作・運用',
     catch: 'つくって終わりにしない。公開後も回り続けるホームページ。',
@@ -35,12 +35,12 @@ export const SERVICES = [
       'オリジナルデザインのホームページ制作と、公開後の更新・問い合わせ・予約・分析・集客・リピートを回す運用システムをセットで提供します。「LINEで送るだけで更新できる」など、毎日の手間を減らす仕組みを備えています。',
     url: 'https://regolith-orbit.jp/',
     image: { src: '/images/illustrations/admin.png', w: 510, h: 602, alt: 'パソコンで管理画面を操作するビジネスパーソンのイラスト' },
-    cover: { src: '/images/services/orbit.svg', alt: 'ホームページを中心に7つの機能が軌道を回る図' },
+    cover: { src: '/images/services/orbit.svg', alt: 'ホームページの画面を中心に7つの機能を色ブロックで並べた図' },
   },
   {
     id: 'fit',
     no: '03',
-    eyebrow: 'PERSONAL & 24H GYM',
+    eyebrow: 'FITNESS GYM / ICHI MARU ICHI',
     name: '101FIT',
     sub: 'パーソナル＋24時間ジム',
     catch: '地域の健康づくりと、集客・採用の実践の場。',
@@ -49,7 +49,7 @@ export const SERVICES = [
     url: 'https://101-fit.jp/',
     address: '北海道石狩市樽川3条1丁目19',
     image: { src: '/images/illustrations/gym.png', w: 355, h: 940, alt: 'ジムのインストラクターのイラスト' },
-    cover: { src: '/images/services/fit.svg', alt: 'ダンベルと軌道線を組み合わせたジムのイメージ図' },
+    cover: { src: '/images/services/fit.svg', alt: 'ダンベルと色ブロックを組み合わせたジムのイメージ図' },
   },
 ]
 

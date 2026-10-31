@@ -23,7 +23,7 @@ export default function NewsPage() {
   return (
     <>
       <DocumentMeta jsonLd={jsonLd} />
-      <PageHero title="お知らせ" image="/images/news/cover.svg" alt="軌道線と通知の波紋を描いたお知らせのカバーイメージ" />
+      <PageHero title="お知らせ" image="/images/news/cover.svg" alt="パールの地に月と色ブロックを配したお知らせのカバーイメージ" />
 
       <section className="section">
         <div className="container">

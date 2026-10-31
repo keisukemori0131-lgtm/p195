@@ -3,10 +3,11 @@ import { publicUrl } from '../lib/publicUrl.js'
 import { SITE } from '../constants/site.js'
 
 // R16-2: トップのフルブリード・ヒーロー（生成 SVG のスライドショー + 中央大見出し）
+// 名刺のデザイン: パール地・灰色の月・両端の色ブロック（色ブロックはスマホで切れないよう CSS で固定）
 const SLIDES = [
-  { src: '/images/hero/slide-1.svg', alt: '月面の地平線の上に細い軌道線が弧を描くグラフィック' },
-  { src: '/images/hero/slide-2.svg', alt: '石狩の地平線と夜明けの空を抽象化したグラフィック' },
-  { src: '/images/hero/slide-3.svg', alt: '3つの星が同じ軌道を回るグラフィック' },
+  { src: '/images/hero/slide-1.svg', alt: 'パールの地に灰色の月が浮かぶグラフィック' },
+  { src: '/images/hero/slide-2.svg', alt: '白い板張りの壁に赤・黄・緑・青の色ブロックを並べたグラフィック' },
+  { src: '/images/hero/slide-3.svg', alt: '黒い縦帯と REGOLITH・101FIT の透かし文字を配したグラフィック' },
 ]
 const INTERVAL_MS = 6000
 
@@ -44,6 +45,8 @@ export default function Hero() {
         ))}
         <span className="hero__shade" aria-hidden="true" />
       </div>
+      <span className="hero__edge hero__edge--l" aria-hidden="true" />
+      <span className="hero__edge hero__edge--r" aria-hidden="true" />
 
       <div className="hero__inner">
         <div className={`hero__content${ready ? ' is-ready' : ''}`}>
@@ -55,6 +58,9 @@ export default function Hero() {
           <p className="hero__sub">
             <span className="hero__sub-line">採用・集客・健康づくり。</span>
             <span className="hero__sub-line">石狩から、地域の会社と人の推進力をつくります。</span>
+          </p>
+          <p className="hero__tag serif-tag" lang="en">
+            {SITE.slogan}
           </p>
           <p className="visually-hidden">{SITE.name}</p>
         </div>

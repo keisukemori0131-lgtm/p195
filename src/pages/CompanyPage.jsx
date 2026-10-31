@@ -4,18 +4,50 @@ import DocumentMeta from '../components/DocumentMeta.jsx'
 import PageHero from '../components/PageHero.jsx'
 import SectionHead from '../components/SectionHead.jsx'
 import CtaBand from '../components/CtaBand.jsx'
+import RepCard from '../components/RepCard.jsx'
 import { SITE, PHONE_DISPLAY, PHONE_TEL, MAP_EMBED_URL, MAP_LINK_URL, GYM_SNS } from '../constants/site.js'
 import { publicUrl } from '../lib/publicUrl.js'
 
-// 会社概要。設立年・郵便番号・公開用メールは未提供のため行ごと出さない（R2・HANDOFF 参照）
+// 会社概要。郵便番号・オフィス・FAX・代表者のローマ字表記は代表の名刺より。
+// 設立年・公開用メールは未確定のため行ごと出さない（R2・HANDOFF 参照）
 const PROFILE_ROWS = [
   { label: '商号', value: SITE.name },
-  { label: '代表者', value: `${SITE.representative.title}　${SITE.representative.name}` },
-  { label: '所在地', value: SITE.address.full },
+  {
+    label: '代表者',
+    value: (
+      <>
+        {SITE.representative.title}　{SITE.representative.name}
+        <span className="profile-table__roman" lang="en">
+          {SITE.representative.nameRoman}
+        </span>
+      </>
+    ),
+  },
+  {
+    label: '本社',
+    value: (
+      <>
+        〒{SITE.address.postal}
+        <br />
+        {SITE.address.full}
+      </>
+    ),
+  },
+  {
+    label: 'オフィス',
+    value: (
+      <>
+        〒{SITE.office.postal}
+        <br />
+        {SITE.office.full}
+      </>
+    ),
+  },
   {
     label: '電話番号',
     value: <a href={`tel:${PHONE_TEL}`}>{PHONE_DISPLAY}</a>,
   },
+  { label: 'FAX', value: SITE.fax },
   {
     label: '事業内容',
     value: (
@@ -55,7 +87,7 @@ export default function CompanyPage() {
   return (
     <>
       <DocumentMeta />
-      <PageHero title="会社概要・アクセス" image="/images/company/cover.svg" alt="月面の地平線と軌道線を描いた会社概要のカバーイメージ" />
+      <PageHero title="会社概要・アクセス" image="/images/company/cover.svg" alt="パールの地に月と色ブロックを配した会社概要のカバーイメージ" />
 
       {/* 社名の由来・ブランド */}
       <section className="section" aria-labelledby="origin-title">
@@ -74,11 +106,12 @@ export default function CompanyPage() {
               「自社で試して効果があった方法」をもとにご提案できます。
             </p>
             <p>採用・集客・健康づくり。地域の会社と人の推進力をつくることが、私たちの仕事です。</p>
+            <RepCard />
           </div>
           <div className="split__media reveal">
             <img
               src={publicUrl('/images/about/philosophy.svg')}
-              alt="月面の地平線からロケットの噴射のように軌道へ上るオレンジの線"
+              alt="名刺と同じ色ブロックと灰色の月で構成した REGOLITH のブランドイメージ"
               width={800}
               height={600}
               loading="lazy"
@@ -120,7 +153,7 @@ export default function CompanyPage() {
           <div className="access__grid">
             <div className="access__info reveal">
               <h3 className="access__name">{SITE.name}</h3>
-              <p>{SITE.address.full}</p>
+              <p>〒{SITE.address.postal} {SITE.address.full}</p>
               <p>
                 TEL <a href={`tel:${PHONE_TEL}`}>{PHONE_DISPLAY}</a>
               </p>

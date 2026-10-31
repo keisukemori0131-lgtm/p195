@@ -4,7 +4,7 @@
 //
 // WebSite / LocalBusiness（会社）/ 各ページ / パンくず を @id で結んだ 1 つの @graph にまとめる。
 // 住所・電話は顧客YAMLにあるため LocalBusiness を全ページに出す（R4・R11-B #4）。
-// 郵便番号・設立年は未提供のため出さない（R2）。
+// 郵便番号・FAX は代表の名刺より。設立年は未確定のため出さない（R2）。
 
 /** ページ種別（schema.org の WebPage のサブタイプ） */
 const PAGE_TYPES = {
@@ -26,8 +26,10 @@ export function buildOrganization({ siteUrl, site }) {
     logo: siteUrl ? `${siteUrl}/logo.png` : undefined,
     image: siteUrl ? `${siteUrl}/logo.png` : undefined,
     telephone: site.phone,
+    ...(site.fax ? { faxNumber: site.fax } : {}),
     address: {
       '@type': 'PostalAddress',
+      ...(site.address.postal ? { postalCode: site.address.postal } : {}),
       addressRegion: site.address.pref,
       addressLocality: site.address.city,
       streetAddress: site.address.street,

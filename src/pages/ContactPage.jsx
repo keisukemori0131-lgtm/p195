@@ -29,7 +29,7 @@ export default function ContactPage() {
   return (
     <>
       <DocumentMeta />
-      <PageHero title="お問い合わせ" image="/images/nav/contact.svg" alt="軌道線の先で光るオレンジの星を描いたお問い合わせのカバーイメージ" />
+      <PageHero title="お問い合わせ" image="/images/nav/contact.svg" alt="パールの地に月と色ブロックを配したお問い合わせのカバーイメージ" />
 
       <section className="section">
         <div className="container contact">

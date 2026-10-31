@@ -22,7 +22,7 @@ export default function ColumnPage() {
   return (
     <>
       <DocumentMeta jsonLd={jsonLd} />
-      <PageHero title="コラム" image="/images/column/cover.svg" alt="開いたノートと軌道線を描いたコラムのカバーイメージ" />
+      <PageHero title="コラム" image="/images/column/cover.svg" alt="パールの地に開いたノートと色ブロックを配したコラムのカバーイメージ" />
 
       <section className="section">
         <div className="container">

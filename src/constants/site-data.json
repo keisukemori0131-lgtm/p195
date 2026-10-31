@@ -8,11 +8,13 @@
   "subcopy": "採用・集客・健康づくり。石狩から、地域の会社と人の推進力をつくります。",
   "representative": {
     "title": "代表取締役",
-    "name": "鍵谷 洋輔"
+    "name": "鍵谷 洋輔",
+    "nameRoman": "YOUSUKE KAGIYA"
   },
   "corporateNumber": "2430001068405",
   "phone": "0133-76-6751",
   "address": {
+    "postal": "061-3211",
     "pref": "北海道",
     "city": "石狩市",
     "street": "花川北一条5丁目81番地",
@@ -37,6 +39,13 @@
     "sns": {
       "instagram": "https://www.instagram.com/101fit_ishikari/",
       "x": "https://twitter.com/101fit_ISHIKARI"
-    }
-  }
+    },
+    "reading": "ICHI MARU ICHI"
+  },
+  "office": {
+    "postal": "061-3215",
+    "full": "北海道石狩市花川北5条2丁目79番地"
+  },
+  "fax": "0133-76-6759",
+  "slogan": "Instantaneous power"
 }

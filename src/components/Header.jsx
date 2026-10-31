@@ -72,6 +72,7 @@ export default function Header() {
 
   return (
     <header className={`site-header${overlay && !open ? ' header--overlay' : ''}`}>
+      <span className="color-strip site-header__strip" aria-hidden="true" />
       <div className="container site-header__inner">
         <Link to="/" className="brand" aria-label={`${SITE_LABEL} トップへ`} onClick={onNavClick}>
           <Logo showName height={40} />

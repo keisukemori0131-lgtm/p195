@@ -7,7 +7,10 @@ export default function Footer() {
   const year = new Date().getFullYear()
   return (
     <footer className="site-footer">
-      <div className="site-footer__orbit" aria-hidden="true" />
+      <span className="color-strip" aria-hidden="true" />
+      <span className="ghost-word ghost-word--br" aria-hidden="true">
+        REGOLITH
+      </span>
       <div className="container site-footer__inner">
         <div className="site-footer__brand">
           <Link to="/" onClick={scrollToTop} aria-label={`${SITE.name} トップへ`}>
@@ -15,9 +18,9 @@ export default function Footer() {
           </Link>
           <p className="site-footer__tagline">{SITE.tagline}</p>
           <address className="site-footer__address">
-            {SITE.address.full}
+            〒{SITE.address.postal} {SITE.address.full}
             <br />
-            TEL <a href={`tel:${PHONE_TEL}`}>{PHONE_DISPLAY}</a>
+            TEL <a href={`tel:${PHONE_TEL}`}>{PHONE_DISPLAY}</a>　FAX {SITE.fax}
           </address>
         </div>
 

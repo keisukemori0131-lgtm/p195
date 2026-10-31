@@ -117,7 +117,7 @@ export default function ServicesPage() {
   return (
     <>
       <DocumentMeta />
-      <PageHero title="サービス" image="/images/services/cover.svg" alt="3つの事業を表す星と軌道線のカバーイメージ" />
+      <PageHero title="サービス" image="/images/services/cover.svg" alt="パールの地に月と色ブロックを配したサービスのカバーイメージ" />
 
       <section className="section section--intro">
         <div className="container">
