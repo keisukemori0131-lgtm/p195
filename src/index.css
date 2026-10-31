@@ -567,20 +567,17 @@ main {
 }
 
 /* ---------- reveal（R16-5: JS が動く環境でのみアニメーション） ---------- */
+/* 文字や画像は常に表示したまま（全ページのスクリーンショットや速いスクロールでも欠けない）、少しだけ動かす */
 .js-ready .reveal,
 .js-ready .stagger > * {
-  opacity: 0;
-  transform: translateY(14px);
-  transition:
-    opacity 0.5s var(--ease),
-    transform 0.5s var(--ease);
+  transform: translateY(10px);
+  transition: transform 0.5s var(--ease);
 }
 .js-ready .stagger > * {
   transition-delay: calc(var(--reveal-i, 0) * 60ms);
 }
 .js-ready .reveal.is-visible,
 .js-ready .stagger.is-visible > * {
-  opacity: 1;
   transform: none;
 }
 @media (prefers-reduced-motion: reduce) {
@@ -924,17 +921,13 @@ main {
 .js-ready .hero__sub,
 .js-ready .hero__actions,
 .js-ready .hero__tag {
-  opacity: 0;
-  transform: translateY(14px);
-  transition:
-    opacity 0.9s var(--ease),
-    transform 0.9s var(--ease);
+  transform: translateY(12px);
+  transition: transform 0.8s var(--ease);
 }
 .hero__content.is-ready .hero__line,
 .hero__content.is-ready .hero__sub,
 .hero__content.is-ready .hero__actions,
 .hero__content.is-ready .hero__tag {
-  opacity: 1;
   transform: none;
 }
 .hero__content.is-ready .hero__line:nth-child(2) {
