@@ -7,7 +7,9 @@ import {
   getContentBody,
   getContentThumb,
   getContentTags,
+  getContentSubtitle,
   formatContentDate,
+  contentTime,
 } from '../lib/upnoteContent.js'
 import Pager from './Pager.jsx'
 import ErrorMsg from './ErrorMsg.jsx'
@@ -16,12 +18,44 @@ const LIMIT = 10 // R14-1: 一覧は 10 件ずつページャ取得
 
 const stripHtml = (html) => String(html).replace(/<[^>]*>/g, '').trim()
 
-/** カードのリード文（lead / summary が無いタイプは本文の先頭を要約として使う） */
+/** カードのリード文（summary → subtitle → 本文の先頭。cre-comsence.com の newsExcerpt と同じ順） */
 export function cardLead(item) {
-  const lead = getContentLead(item)
+  const lead = getContentLead(item) || getContentSubtitle(item)
   if (lead) return lead
-  const body = stripHtml(getContentBody(item))
+  const body = stripHtml(getContentBody(item)).replace(/^[■・●▪]\s*/gmu, '').replace(/\s+/g, ' ')
   return body ? body.slice(0, 120) : ''
+}
+
+/** 一覧の先頭に大きく出す最新記事（cre-comsence.com の featured カード） */
+export function FeaturedCard({ item, basePath }) {
+  const title = getContentTitle(item)
+  const lead = cardLead(item)
+  const hasThumb = Boolean(getContentThumb(item))
+  return (
+    <Link to={`${basePath}/${item.id}`} className={`featured-card${hasThumb ? '' : ' featured-card--text'}`}>
+      {hasThumb && <CardMedia item={item} title={title} />}
+      <span className="featured-card__body">
+        <span className="content-card__meta">
+          <span className="featured-card__latest" lang="en">
+            LATEST
+          </span>
+          <span className="content-card__date">{formatContentDate(item)}</span>
+          {getContentTags(item)
+            .slice(0, 2)
+            .map((t) => (
+              <span key={t} className="tag-chip">
+                {t}
+              </span>
+            ))}
+        </span>
+        <span className="featured-card__title">{title}</span>
+        {lead && <span className="featured-card__lead">{lead}</span>}
+        <span className="content-card__more" aria-hidden="true">
+          続きを読む →
+        </span>
+      </span>
+    </Link>
+  )
 }
 
 export function CardMeta({ item }) {
@@ -87,12 +121,15 @@ function SkeletonGrid() {
 
 /**
  * UpNote 一覧ボード（R14）。カードは概要のみ、押下で個別詳細ページへ。
+ * 表示方法は cre-comsence.com に合わせる: 件数表示 → 1 ページ目は最新 1 件を大きく →
+ * 「過去の○○」として残りをカードで並べる → ページャ
  * @param {string} slug         contentTypeSlug
  * @param {string} basePath     詳細ページのベースパス（例 '/news'）
+ * @param {string} listLabel    一覧の名称（例 'お知らせ'）
  * @param {string} emptyMessage 0 件時のメッセージ
  * @param {(items: Array) => void} [onItems] 取得結果を親へ渡す（ItemList 構造化データ用）
  */
-export default function ContentBoard({ slug, basePath, emptyMessage, onItems }) {
+export default function ContentBoard({ slug, basePath, listLabel, emptyMessage, onItems }) {
   const [page, setPage] = useState(1)
   const { data, loading, error, reload } = useContentList(slug, { page, limit: LIMIT })
 
@@ -100,8 +137,13 @@ export default function ContentBoard({ slug, basePath, emptyMessage, onItems }) 
     if (onItems && data?.items) onItems(data.items)
   }, [data, onItems])
 
-  const items = data?.items ?? []
+  // ページ内は新しい順に並べる（UpNote の sortOrder が未設定でも日付順になるように）
+  const items = [...(data?.items ?? [])].sort((a, b) => contentTime(b) - contentTime(a))
   const totalPages = data?.totalPages ?? 1
+  const totalCount = data?.totalCount ?? items.length
+  const isFirstPage = page === 1
+  const latest = isFirstPage ? items[0] : null
+  const rest = isFirstPage ? items.slice(1) : items
 
   const changePage = (p) => {
     setPage(p)
@@ -118,11 +160,24 @@ export default function ContentBoard({ slug, basePath, emptyMessage, onItems }) 
       {data && items.length === 0 && <p className="state-msg">{emptyMessage}</p>}
       {data && items.length > 0 && (
         <>
-          <div className="content-grid stagger">
-            {items.map((item) => (
-              <ContentCard key={item.id} item={item} basePath={basePath} />
-            ))}
-          </div>
+          <p className="board-count">
+            全<strong>{totalCount}</strong>件
+            <span aria-hidden="true" className="board-count__sep" />
+            {items.length}件を表示・{page}/{totalPages}ページ
+          </p>
+          {latest && <FeaturedCard item={latest} basePath={basePath} />}
+          {rest.length > 0 && (
+            <>
+              <h2 className="board-heading">
+                {isFirstPage ? `過去の${listLabel}` : `${listLabel}一覧`}
+              </h2>
+              <div className="content-grid stagger">
+                {rest.map((item) => (
+                  <ContentCard key={item.id} item={item} basePath={basePath} />
+                ))}
+              </div>
+            </>
+          )}
           <Pager current={page} totalPages={totalPages} onChange={changePage} />
         </>
       )}

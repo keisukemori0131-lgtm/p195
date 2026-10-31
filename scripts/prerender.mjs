@@ -28,6 +28,7 @@ import { createHash } from 'node:crypto'
 import { createServer } from 'vite'
 import react from '@vitejs/plugin-react'
 import { buildPageJsonLd, buildArticleJsonLd } from '../src/lib/structuredData.js'
+import { parseFaqText } from '../src/lib/articleContent.js'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const root = resolve(__dirname, '..')
@@ -113,6 +114,15 @@ function buildHeadExtras(meta, preload) {
         { '@type': 'ListItem', position: 3, name: title },
       ],
     })
+    // 記事の FAQ（data.faq の Q./A.）は FAQPage として出す（ArticleDetail.jsx と同じ）
+    const faqItems = parseFaqText(item?.data?.faq)
+    if (faqItems.length) {
+      jsonLd.push({
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: faqItems.map((q) => ({ '@type': 'Question', name: q.question, acceptedAnswer: { '@type': 'Answer', text: q.answer } })),
+      })
+    }
   }
 
   // 一覧の ItemList（src/lib/jsonld.js と同内容）

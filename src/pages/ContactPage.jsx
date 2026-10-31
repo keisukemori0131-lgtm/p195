@@ -37,7 +37,7 @@ export default function ContactPage() {
             <SectionHead
               eyebrow="CONTACT"
               title="お問い合わせ"
-              lead="求人のこと、ホームページのこと、ジムのこと。まだ考えがまとまっていない段階でもかまいません。フォームまたはお電話でお気軽にご相談ください。"
+              lead="「求人を出しても応募が来ない」「ホームページを更新できていない」「予約や問い合わせの対応を楽にしたい」。まだ考えがまとまっていなくても大丈夫です。今の状況をそのままお聞かせください。"
             />
             <div className="contact__tel">
               <p className="contact__tel-label">お電話でのお問い合わせ</p>
@@ -60,7 +60,8 @@ export default function ContactPage() {
               formKey={FORM_KEYS.contact}
               extraFields={EXTRA_FIELDS}
               messageLabel="お問い合わせ内容"
-              messageHint="現在お困りのこと、ご希望の時期などをお書きください。"
+              messageHint="今お困りのこと、いつ頃までに何とかしたいかをお書きください。箇条書きでもかまいません。"
+              submitLabel="この内容で相談する"
               successMessage="お問い合わせありがとうございます。内容を確認のうえ、担当者よりご連絡いたします。"
             />
           </div>

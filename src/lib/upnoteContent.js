@@ -46,6 +46,39 @@ export const getContentBody = (item) =>
   item?.data?.answer ||
   ''
 
+export const getContentCategory = (item) => item?.data?.category || ''
+
+/** 記事の説明文（meta description・カードの要約）。meta_description → summary/lead → 本文の先頭 */
+export function getContentDescription(item, max = 120) {
+  const d = item?.data || {}
+  const text = d.meta_description || getContentLead(item) || d.subtitle || getContentBody(item)
+  return String(text || '')
+    .replace(/<[^>]*>/g, '')
+    .replace(/^[■・●▪]\s*/gmu, '')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .slice(0, max)
+}
+
+/** 著者（columns の author_name / author_title / author_affiliation / author_profile） */
+export function getContentAuthor(item) {
+  const d = item?.data || {}
+  const name = typeof d.author_name === 'string' ? d.author_name.trim() : ''
+  if (!name) return null
+  return {
+    name,
+    title: d.author_title?.trim?.() || '',
+    affiliation: d.author_affiliation?.trim?.() || '',
+    profile: d.author_profile?.trim?.() || '',
+  }
+}
+
+/** 一覧の並び順用（新しい順） */
+export function contentTime(item) {
+  const t = new Date(getContentDateRaw(item)).getTime()
+  return Number.isNaN(t) ? 0 : t
+}
+
 export function getContentDateRaw(item) {
   // 公開 API に publishedAt は無い（createdAt / updatedAt のみ）
   return item?.data?.notice_date || item?.data?.published_date || item?.createdAt || ''
@@ -127,6 +160,14 @@ export const DEFAULT_MODAL_SKIP_KEYS = [
   'testimonial',
   'question',
   'published_date',
+  // 記事の見出し帯・要約・FAQ・著者カードで描画済み（cre-comsence 方式の詳細ページ）
+  'category',
+  'faq',
+  'meta_description',
+  'author_name',
+  'author_title',
+  'author_affiliation',
+  'author_profile',
   // events: タイトル・本文として上段スロットで描画済み
   'event_title',
   'details',

@@ -19,6 +19,13 @@ const SERVICE_GROUPS = [
   { label: 'FITNESS GYM', items: SERVICES.filter((s) => s.id === 'fit') },
 ]
 
+// サービス紹介の冒頭に置く「よくある悩み → 解決するサービス」（YAML のターゲット層から）
+const PAINS = [
+  { text: '求人を出しても、応募が来ない', to: '求人情報コンサル' },
+  { text: 'ホームページがない／あっても更新できていない', to: 'REGOLITH ORBIT' },
+  { text: '予約や問い合わせの対応に追われている', to: 'REGOLITH ORBIT' },
+]
+
 // トップに出す「困りごと → こう変わる」のピックアップ（ORBIT 機能一覧から抜粋）
 const ORBIT_PICKS = [
   ORBIT_FEATURES[0].items[0], // LINEからお知らせ投稿
@@ -76,11 +83,11 @@ export default function HomePage() {
           <div className="sec-head sec-head--center reveal">
             <span className="eyebrow">OUR STRENGTH</span>
             <h2 id="strength-title" className="sec-head__title">
-              レゴリスが選ばれる理由
+              自分たちで試して、効いた方法だけを。
             </h2>
             <p className="sec-head__lead">
-              私たちは、自らジムを運営し、集客と採用を現場で実践している会社です。
-              その経験をもとに、求人コンサルとホームページ制作・運用をセットでお届けします。
+              レゴリスは、石狩市でジム「{SITE.gym.name}」を運営し、自らの集客と採用に向き合ってきた会社です。
+              そこで効果があった方法を、あなたの会社の求人とホームページに持ち込みます。
             </p>
           </div>
           <div className="usp-grid stagger">
@@ -102,18 +109,28 @@ export default function HomePage() {
       <Preview
         id="pv-services"
         eyebrow="SERVICES"
-        title="3つの事業で、採用と集客を前へ。"
+        title={
+          <>
+            人が来ない。問い合わせが来ない。
+            <br />
+            その悩み、まとめて相談できます。
+          </>
+        }
         image={{ src: '/images/services/three-stars.svg', w: 800, h: 600, alt: '求人コンサル・REGOLITH ORBIT・101FIT を3つの色ブロックで表した図' }}
         actions={
           <Link to="/services" className="btn btn--primary" onClick={scrollToTop}>
-            サービスを見る
+            3つのサービスを詳しく見る
           </Link>
         }
       >
-        <p className="preview__text">
-          求人原稿で応募の入口をつくり、ホームページで見つけてもらい、自社ジムで方法を確かめる。
-          3つの事業は、同じ軌道の上でつながっています。
-        </p>
+        <ul className="pain-list">
+          {PAINS.map((p) => (
+            <li key={p.text}>
+              <span className="pain-list__text">{p.text}</span>
+              <span className="pain-list__to">→ {p.to}</span>
+            </li>
+          ))}
+        </ul>
         {SERVICE_GROUPS.map((g) => (
           <div key={g.label}>
             <span className="star-list__group" lang="en">
@@ -144,12 +161,13 @@ export default function HomePage() {
             <div className="orbit-pick__head reveal">
               <span className="eyebrow eyebrow--light">REGOLITH ORBIT</span>
               <h2 id="pv-orbit" className="orbit-pick__title">
-                つくって終わりにしない、
+                ホームページ、
                 <br />
-                回り続けるホームページ。
+                公開してから止まっていませんか。
               </h2>
               <p className="orbit-pick__lead">
-                更新・問い合わせ・予約・解析・集客・リピートまで。公開後の「困った」を、仕組みで変えていきます。
+                REGOLITH ORBIT は、つくった後の更新・問い合わせ対応・予約・分析まで回し続ける仕組みです。
+                パソコンを開く時間がない日でも、LINEから続けられます。
               </p>
               <img
                 className="orbit-pick__img"
@@ -179,7 +197,7 @@ export default function HomePage() {
           </div>
           <p className="section-actions reveal">
             <Link to="/services#orbit" className="btn btn--light" onClick={scrollToTop}>
-              REGOLITH ORBIT の機能一覧を見る
+              REGOLITH ORBIT でできることを見る
             </Link>
           </p>
         </div>
@@ -189,13 +207,13 @@ export default function HomePage() {
       <Preview
         id="pv-company"
         eyebrow="COMPANY"
-        title="石狩から、地域の推進力に。"
+        title="石狩の会社だから、石狩の採用と集客を知っています。"
         image={{ src: '/images/about/office.svg', w: 800, h: 600, alt: '灰色の月と石狩の地平線、色ブロックを組み合わせた会社のイメージ図' }}
         reverse
         actions={
           <>
             <Link to="/company" className="btn btn--primary" onClick={scrollToTop}>
-              会社概要を見る
+              レゴリスについて知る
             </Link>
             <Link to="/company#access" className="btn btn--ghost">
               アクセスを見る
@@ -204,9 +222,9 @@ export default function HomePage() {
         }
       >
         <p className="preview__text">
-          社名の「レゴリス」は、月や惑星の表面を覆う砂のこと。
-          {SITE.address.city}を拠点に、{SITE.serviceArea}の中小企業・店舗の足元から、
-          事業を次の軌道へ押し上げる推進力をつくります。
+          {SITE.address.city}花川に本社を置き、{SITE.serviceArea}の中小企業・店舗を支えています。
+          自分たちもこの地域で人を採用し、お客様を集めている当事者です。
+          社名の「レゴリス」は、月や惑星の表面を覆う砂のこと。地域の足元から、事業を次の軌道へ押し上げます。
         </p>
         <RepCard className="rep-card--compact" />
       </Preview>
@@ -218,7 +236,7 @@ export default function HomePage() {
             <div className="list-head reveal">
               <SectionHead eyebrow="NEWS" title={<span id="pv-news">お知らせ</span>} />
               <Link to="/news" className="btn btn--ghost" onClick={scrollToTop}>
-                お知らせ一覧へ
+                お知らせをすべて見る
               </Link>
             </div>
             <HomeContentExcerpt slug={newsSlug} basePath="/news" emptyMessage={EMPTY_MESSAGES.news} limit={3} />
@@ -234,10 +252,10 @@ export default function HomePage() {
               <SectionHead
                 eyebrow="COLUMN"
                 title={<span id="pv-column">コラム</span>}
-                lead="採用・集客・ホームページ運用に役立つヒントをお届けします。"
+                lead="求人原稿の書き方から、ホームページの更新まで。明日から試せる採用と集客のヒントです。"
               />
               <Link to="/column" className="btn btn--ghost" onClick={scrollToTop}>
-                コラム一覧へ
+                コラムをすべて読む
               </Link>
             </div>
             <HomeContentExcerpt slug={columnSlug} basePath="/column" emptyMessage={EMPTY_MESSAGES.columns} limit={3} />

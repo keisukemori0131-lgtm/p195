@@ -123,8 +123,8 @@ export default function ServicesPage() {
         <div className="container">
           <SectionHead
             eyebrow="SERVICES"
-            title="採用・集客・健康づくり。3つの事業で、事業を前へ。"
-            lead="求人原稿で応募の入口をつくり、ホームページで見つけてもらい、自社ジムで方法を確かめる。それぞれの事業で得た経験を、ほかの事業にも生かしています。"
+            title="採用に困ったら。集客に困ったら。まずはレゴリスへ。"
+            lead="求人原稿で応募の入口をつくる。ホームページで見つけてもらい、問い合わせと予約を逃さない。その方法は、自社ジムで確かめたものです。3つの事業がつながっているから、採用と集客をまとめて前に進められます。"
             center
           />
           <nav className="service-index stagger" aria-label="サービス一覧">
@@ -158,8 +158,8 @@ export default function ServicesPage() {
             decoding="async"
           />
           <p>
-            採用ページ・Googleしごと検索への掲載は、REGOLITH ORBIT の機能として提供しています。
-            求人原稿づくりと掲載の仕組みをまとめてご相談いただけます。
+            原稿を整えても、求職者の目に入らなければ応募は来ません。REGOLITH ORBIT の採用ページとGoogleしごと検索への掲載を組み合わせれば、
+            求人づくりから掲載までをまとめてご相談いただけます。
           </p>
         </div>
       </ServiceBlock>
@@ -216,7 +216,7 @@ export default function ServicesPage() {
             <p>
               所在地: {fit.address}
               <br />
-              ジムで試した集客・採用の方法は、求人コンサルと REGOLITH ORBIT のご提案に生かしています。
+              ここで試して効果があった集客と採用の方法を、求人コンサルと REGOLITH ORBIT のご提案に生かしています。
             </p>
             <p className="side-note__actions">
               <Link to="/company#access" className="btn btn--ghost">
@@ -238,10 +238,10 @@ export default function ServicesPage() {
             loading="lazy"
             decoding="async"
           />
-          <p className="big-text">どのサービスから始めればよいか分からない場合も、まずは今の困りごとをお聞かせください。</p>
+          <p className="big-text">どのサービスが合うか分からなくても大丈夫です。今の困りごとをそのまま聞かせてください。</p>
           <p>
             <Link to="/contact" className="btn btn--primary" onClick={scrollToTop}>
-              相談する
+              困りごとを相談する
             </Link>
           </p>
         </div>

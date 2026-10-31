@@ -17,7 +17,7 @@ import NotFoundPage from './pages/NotFoundPage.jsx'
 import ROUTES_JSON from './constants/site-routes.json'
 import SITE_DATA from './constants/site-data.json'
 import { setPreloadData } from './lib/preload.js'
-import { getContentTitle, getContentLead, getContentBody } from './lib/upnoteContent.js'
+import { getContentTitle, getContentDescription } from './lib/upnoteContent.js'
 import { ENABLED_CONTENT_TYPES } from './config/upnoteContentTypes.js'
 
 /**
@@ -67,11 +67,11 @@ export function seo(path) {
 /* ───────────── 記事詳細の SSG（R14-5） ───────────── */
 
 const SITE_LABEL = SITE_DATA.label
-const stripHtml = (html) => String(html).replace(/<[^>]*>/g, '').trim()
 
 function articleMeta(item, basePath, listLabel, jsonLdType) {
   const title = getContentTitle(item)
-  const description = (getContentLead(item) || stripHtml(getContentBody(item))).slice(0, 120)
+  // ArticleDetail.jsx と同じ説明文（meta_description → summary → 本文の先頭）
+  const description = getContentDescription(item)
   return {
     path: `${basePath}/${item.id}`,
     title: `${title}｜${listLabel}｜${SITE_LABEL}`,

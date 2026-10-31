@@ -2,7 +2,8 @@ import { Link } from 'react-router-dom'
 import { SITE, PHONE_DISPLAY, PHONE_TEL } from '../constants/site.js'
 import { scrollToTop } from '../constants/nav.js'
 
-// 最終 CTA バンド（R12 #4）。名刺裏面の構成（黒地・透かし社名・欧文セリフ）に合わせる
+// 最終 CTA バンド（R12 #4）。名刺裏面の構成（黒地・透かし社名・欧文セリフ）に合わせる。
+// 文言: 悩みに寄り添う見出し → 相談のハードルを下げる一文 → 何が得られるかが分かるボタン
 export default function CtaBand() {
   return (
     <section className="cta-band reveal" aria-labelledby="cta-band-title">
@@ -15,15 +16,19 @@ export default function CtaBand() {
           {SITE.slogan}
         </p>
         <h2 id="cta-band-title" className="cta-band__title">
-          採用・集客の「次の一手」を、いっしょに。
+          人が来ない、問い合わせが来ない。
+          <br />
+          その悩みから、話しましょう。
         </h2>
-        <p className="cta-band__text">求人のこと、ホームページのこと、まだ考えがまとまっていない段階でもご相談ください。</p>
+        <p className="cta-band__text">
+          まだ考えがまとまっていなくても大丈夫です。今の状況をお聞きして、最初の一手を一緒に考えます。
+        </p>
         <div className="cta-band__actions">
           <Link to="/contact" className="btn btn--light btn--lg" onClick={scrollToTop}>
-            フォームで問い合わせる
+            フォームで相談する
           </Link>
           <a href={`tel:${PHONE_TEL}`} className="btn btn--outline-light btn--lg">
-            電話する {PHONE_DISPLAY}
+            電話で相談する {PHONE_DISPLAY}
           </a>
         </div>
       </div>

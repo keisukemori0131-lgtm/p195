@@ -29,7 +29,7 @@ export default function NewsPage() {
         <div className="container">
           <SectionHead eyebrow="NEWS" title="お知らせ一覧" lead="サービスに関するお知らせや、運営するジム「101FIT」の情報などを掲載しています。" />
           {isEnabled(slug) ? (
-            <ContentBoard slug={slug} basePath="/news" emptyMessage={EMPTY_MESSAGES.news} onItems={handleItems} />
+            <ContentBoard slug={slug} basePath="/news" listLabel="お知らせ" emptyMessage={EMPTY_MESSAGES.news} onItems={handleItems} />
           ) : (
             <p className="state-msg">現在公開中の情報はありません。</p>
           )}

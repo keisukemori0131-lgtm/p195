@@ -29,10 +29,10 @@ export default function ColumnPage() {
           <SectionHead
             eyebrow="COLUMN"
             title="コラム一覧"
-            lead="求人原稿の書き方、Googleしごと検索、ホームページの更新や問い合わせ対応など、採用と集客に役立つ情報をお届けします。"
+            lead="求人原稿の書き方、Googleしごと検索、ホームページの更新や問い合わせ対応。自社ジムの運営で試してきたことをもとに、明日から使える採用と集客のヒントをお届けします。"
           />
           {isEnabled(slug) ? (
-            <ContentBoard slug={slug} basePath="/column" emptyMessage={EMPTY_MESSAGES.columns} onItems={handleItems} />
+            <ContentBoard slug={slug} basePath="/column" listLabel="コラム" emptyMessage={EMPTY_MESSAGES.columns} onItems={handleItems} />
           ) : (
             <p className="state-msg">現在公開中の情報はありません。</p>
           )}
