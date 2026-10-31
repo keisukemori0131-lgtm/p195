@@ -21,14 +21,14 @@ const SERVICE_GROUPS = [
 // 選ばれる理由のカードのアイコン（USP_CARDS と同じ順）
 const USP_ICONS = ['handshake', 'monitor', 'users']
 
-// サービス紹介の冒頭に置く「よくある悩み → 解決するサービス」（YAML のターゲット層から）
+// サービス紹介の冒頭に置く「よくある悩み」（YAML のターゲット層から）
 const PAINS = [
-  { text: '求人を出しても、応募が来ない', to: '求人情報コンサル', icon: 'user' },
-  { text: 'ホームページがない／あっても更新できていない', to: 'REGOLITH ORBIT', icon: 'monitor' },
-  { text: '予約や問い合わせの対応に追われている', to: 'REGOLITH ORBIT', icon: 'phone' },
+  { text: '求人を出しても、応募が来ない', icon: 'user' },
+  { text: 'ホームページがない／あっても更新できていない', icon: 'monitor' },
+  { text: '予約や問い合わせの対応に追われている', icon: 'phone' },
 ]
 
-// トップに出す「困りごと → こう変わる」のピックアップ（ORBIT 機能一覧から抜粋）
+// トップに出す ORBIT の機能ピックアップ（機能名だけ。困りごと → こう変わるはサービスページの機能一覧で見せる）
 const ORBIT_PICKS = [
   { ...ORBIT_FEATURES[0].items[0], icon: 'file', tone: 'green' }, // LINEからお知らせ投稿
   { ...ORBIT_FEATURES[1].items[0], icon: 'message', tone: 'blue' }, // 受信箱＋LINE即時通知
@@ -75,9 +75,8 @@ export default function HomePage() {
               return (
                 <article className="usp-card accent-card" key={c.eyebrow}>
                   <div className="usp-card__top">
-                    <span className="usp-card__no" lang="en">
+                    <span className="usp-card__no" lang="en" aria-label={`${no} ${en}`}>
                       {no}
-                      <span className="usp-card__en">{en}</span>
                     </span>
                     <Icon name={USP_ICONS[i]} size={40} strokeWidth={1.4} className="usp-card__icon" />
                   </div>
@@ -114,10 +113,7 @@ export default function HomePage() {
                 {PAINS.map((p) => (
                   <li key={p.text}>
                     <Icon name={p.icon} size={22} />
-                    <span>
-                      <span className="pain-box__text">{p.text}</span>
-                      <span className="pain-box__to">→ {p.to}</span>
-                    </span>
+                    <span className="pain-box__text">{p.text}</span>
                   </li>
                 ))}
               </ul>
@@ -183,11 +179,7 @@ export default function HomePage() {
                 <span className={`icon-badge icon-badge--${f.tone}`}>
                   <Icon name={f.icon} size={26} />
                 </span>
-                <span className="orbit-tile__body">
-                  <span className="orbit-tile__name">{f.name}</span>
-                  <span className="orbit-tile__pain">困りごと：{f.pain}</span>
-                  <span className="orbit-tile__gain">→ {f.gain}</span>
-                </span>
+                <span className="orbit-tile__name">{f.name}</span>
               </li>
             ))}
           </ul>

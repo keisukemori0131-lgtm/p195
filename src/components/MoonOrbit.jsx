@@ -4,7 +4,7 @@ import { publicUrl } from '../lib/publicUrl.js'
 // 灰色の月 + 細い軌道の線（REGOLITH = 月の砂 / ORBIT = 軌道）。
 // 軌道は「月の後ろ」と「月の手前」の 2 枚に分け、月を挟んで立体的に見せる。
 // tone: 'dark'（濃紺の地・白い線） / 'light'（パールの地・灰色の線）
-const RING = { cx: 400, cy: 300, rx: 340, ry: 98, rotate: -20 }
+const RING = { cx: 400, cy: 300, rx: 300, ry: 96, rotate: -26 }
 
 function Ring({ front }) {
   const { cx, cy, rx, ry, rotate } = RING
