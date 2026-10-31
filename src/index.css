@@ -2471,21 +2471,48 @@ main {
 }
 .article-sheet__images {
   display: grid;
-  gap: 20px;
-  margin-bottom: 20px;
+  gap: 12px;
+  margin-bottom: 24px;
 }
-/* 全文表示の画像はクロップしない（R5-Safari） */
+.article-sheet__images--2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.article-sheet__images--3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+/* 全文表示の画像はクロップしない（R5-Safari）。枠の高さを決め、その中に画像全体を収める */
 .article-sheet__figure {
+  position: relative;
   margin: 0;
+  height: clamp(200px, 36vw, 340px);
   background: var(--c-pearl);
+  overflow: hidden;
+}
+.article-sheet__images--2 .article-sheet__figure,
+.article-sheet__images--3 .article-sheet__figure {
+  height: auto;
+  aspect-ratio: 4 / 3;
+}
+.article-sheet__figure a {
+  position: absolute;
+  inset: 0;
+  display: block;
+  cursor: zoom-in;
 }
 .article-sheet__figure img {
   width: 100%;
-  height: auto;
-  max-width: 100%;
-  max-height: 560px;
+  height: 100%;
+  max-width: none;
   object-fit: contain;
-  margin: 0 auto;
+  transition: transform 0.4s var(--ease);
+}
+.article-sheet__figure a:hover img {
+  transform: scale(1.03);
+}
+@media (max-width: 640px) {
+  .article-sheet__images--3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 .article-sheet__summary {
   margin: 0 0 40px;

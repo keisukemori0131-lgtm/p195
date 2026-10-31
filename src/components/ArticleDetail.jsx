@@ -185,11 +185,15 @@ export default function ArticleDetail({ id, basePath, listLabel, jsonLdType = 'N
           <div className="container">
             <div className="article-sheet">
               {images.length > 0 && (
-                <div className="article-sheet__images">
+                // 本文を読みやすくするため画像は控えめな枠に収める（1 枚は横長の枠、複数は 2〜3 列）。
+                // 画像は切り抜かず全体を表示し、押すと元の大きさで開く
+                <div className={`article-sheet__images article-sheet__images--${Math.min(images.length, 3)}`}>
                   {images.map((src, i) => (
                     <figure key={src} className="article-sheet__figure">
-                      {/* 全文表示の画像はクロップしない（R5-Safari） */}
-                      <img src={src} alt={i === 0 ? title : `${title} の画像 ${i + 1}`} loading={i === 0 ? 'eager' : 'lazy'} decoding="async" />
+                      <a href={src} target="_blank" rel="noopener noreferrer" aria-label={`画像 ${i + 1} を元の大きさで開く（新しいタブ）`}>
+                        {/* 全文表示の画像はクロップしない（R5-Safari） */}
+                        <img src={src} alt={i === 0 ? title : `${title} の画像 ${i + 1}`} loading={i === 0 ? 'eager' : 'lazy'} decoding="async" />
+                      </a>
                     </figure>
                   ))}
                 </div>
