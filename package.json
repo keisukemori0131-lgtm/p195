@@ -1,0 +1,28 @@
+{
+  "name": "p195-regolith",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "postbuild": "node scripts/generate-sitemap.mjs && node scripts/prerender.mjs",
+    "build:cloudflare:public": "cross-env VITE_SITE_PUBLIC=1 npm run build",
+    "build:sample": "cross-env PRERENDER_SAMPLE=1 npm run build",
+    "build:brand": "node scripts/build-brand.mjs",
+    "preview": "vite preview",
+    "deploy": "wrangler deploy"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.30.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.4.0",
+    "cross-env": "^7.0.3",
+    "sharp": "^0.34.0",
+    "vite": "^6.0.0",
+    "wrangler": "^4.0.0"
+  }
+}

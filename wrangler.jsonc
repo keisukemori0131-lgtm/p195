@@ -1,0 +1,13 @@
+{
+  // Worker 名は Cloudflare ダッシュボードで作成した Worker 名と完全一致させること（HANDOFF.md 参照）
+  // 不一致だと wrangler deploy が別 Worker を新規作成してしまう
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "p195",
+  "compatibility_date": "2026-05-01",
+  "assets": {
+    "directory": "./dist",
+    // canonical / sitemap は末尾スラッシュ無し（/news）で出しているため、配信もそれに揃える
+    "html_handling": "drop-trailing-slash",
+    "not_found_handling": "single-page-application"
+  }
+}

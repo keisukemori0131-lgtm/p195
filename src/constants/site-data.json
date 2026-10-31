@@ -1,0 +1,42 @@
+{
+  "name": "株式会社レゴリス",
+  "nameShort": "レゴリス",
+  "nameRoman": "REGOLITH Inc.",
+  "label": "株式会社レゴリス",
+  "domain": "",
+  "tagline": "事業を、次の軌道へ。",
+  "subcopy": "採用・集客・健康づくり。石狩から、地域の会社と人の推進力をつくります。",
+  "representative": {
+    "title": "代表取締役",
+    "name": "鍵谷 洋輔"
+  },
+  "corporateNumber": "2430001068405",
+  "phone": "0133-76-6751",
+  "address": {
+    "pref": "北海道",
+    "city": "石狩市",
+    "street": "花川北一条5丁目81番地",
+    "full": "北海道石狩市花川北一条5丁目81番地"
+  },
+  "area": "石狩市",
+  "serviceArea": "石狩・札幌圏",
+  "businesses": [
+    "求人情報コンサル（求人原稿の作成・改善、採用活動の支援）",
+    "ホームページ制作・運用「REGOLITH ORBIT」",
+    "パーソナル＋24時間ジム「101FIT」の運営"
+  ],
+  "orbit": {
+    "name": "REGOLITH ORBIT",
+    "url": "https://regolith-orbit.jp/"
+  },
+  "gym": {
+    "name": "101FIT",
+    "kind": "パーソナル＋24時間ジム",
+    "url": "https://101-fit.jp/",
+    "address": "北海道石狩市樽川3条1丁目19",
+    "sns": {
+      "instagram": "https://www.instagram.com/101fit_ishikari/",
+      "x": "https://twitter.com/101fit_ISHIKARI"
+    }
+  }
+}

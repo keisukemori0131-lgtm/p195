@@ -1,0 +1,4 @@
+# 旧 URL・ブックマーク用（アクセスは会社概要に統合）
+# Workers 静的配信のため SPA フォールバック（/* /index.html 200）は書かない。
+# deep-link は wrangler.jsonc の not_found_handling: single-page-application が担う
+/access  /company?section=access  301

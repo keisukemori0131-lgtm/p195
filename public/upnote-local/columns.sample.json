@@ -1,0 +1,269 @@
+{
+  "items": [
+    {
+      "id": 8101,
+      "contentTypeSlug": "columns",
+      "data": {
+        "article_title": "求人原稿で最初に見直したい3つのポイント",
+        "subtitle": "仕事内容・働く環境・求める人物像",
+        "category": "求人原稿",
+        "tag_name": "求人原稿",
+        "author_name": "鍵谷 洋輔",
+        "body": "求人原稿を書くとき、まず見直したいのは「仕事内容」「働く環境」「求める人物像」の3つです。\n\n仕事内容は、1日の流れが想像できるくらい具体的に書くと、応募前の不安が減ります。\n\n働く環境は、職場の雰囲気や一緒に働く人の様子を添えると伝わりやすくなります。\n\n求める人物像は、条件を並べるより「こんな人と働きたい」という言葉で書くのがおすすめです。",
+        "published_date": "2026-10-26",
+        "attachment_1": "/images/illustrations/meeting.png",
+        "attachment_2": null,
+        "related_url": "https://regolith-orbit.jp/",
+        "posted_period_start": "2026-10-26T00:00:00.000Z",
+        "posted_period_end": null
+      },
+      "status": "PUBLISHED",
+      "sortOrder": 0,
+      "mediaFiles": [],
+      "createdAt": "2026-10-26T09:00:00",
+      "updatedAt": "2026-10-26T09:00:00"
+    },
+    {
+      "id": 8102,
+      "contentTypeSlug": "columns",
+      "data": {
+        "article_title": "Googleしごと検索に求人を表示させるには",
+        "subtitle": null,
+        "category": "採用",
+        "tag_name": "採用",
+        "author_name": null,
+        "body": "Googleしごと検索は、Google の検索結果に求人情報をまとめて表示する仕組みです。\n\n自社のホームページに求人ページを用意し、決められた形式で情報を載せることで、検索結果に表示されるようになります。",
+        "published_date": "2026-10-19",
+        "attachment_1": "/images/illustrations/interview.png",
+        "attachment_2": null,
+        "posted_period_start": "2026-10-19T00:00:00.000Z",
+        "posted_period_end": null
+      },
+      "status": "PUBLISHED",
+      "sortOrder": 0,
+      "mediaFiles": [],
+      "createdAt": "2026-10-19T09:00:00",
+      "updatedAt": "2026-10-19T09:00:00"
+    },
+    {
+      "id": 8103,
+      "contentTypeSlug": "columns",
+      "data": {
+        "article_title": "更新が止まるホームページに共通すること",
+        "subtitle": null,
+        "category": "ホームページ運用",
+        "tag_name": "ホームページ運用",
+        "author_name": null,
+        "body": "ホームページの更新が止まってしまう理由の多くは「更新の手間」です。\n\nパソコンを開いて管理画面にログインして……という手順が負担になっていませんか。スマホやLINEから更新できる仕組みにすると、続けやすくなります。",
+        "published_date": "2026-10-12",
+        "attachment_1": null,
+        "attachment_2": null,
+        "posted_period_start": "2026-10-12T00:00:00.000Z",
+        "posted_period_end": null
+      },
+      "status": "PUBLISHED",
+      "sortOrder": 0,
+      "mediaFiles": [],
+      "createdAt": "2026-10-12T09:00:00",
+      "updatedAt": "2026-10-12T09:00:00"
+    },
+    {
+      "id": 8104,
+      "contentTypeSlug": "columns",
+      "data": {
+        "article_title": "問い合わせの「見落とし」を防ぐ仕組みづくり",
+        "subtitle": null,
+        "category": "問い合わせ対応",
+        "tag_name": "問い合わせ対応",
+        "author_name": null,
+        "body": "営業メールに紛れて、本当のお客様からの問い合わせを見落としてしまうことがあります。\n\n受信箱で問い合わせをまとめ、届いたらすぐに通知が来る仕組みにしておくと安心です。",
+        "published_date": "2026-10-05",
+        "attachment_1": null,
+        "attachment_2": null,
+        "posted_period_start": "2026-10-05T00:00:00.000Z",
+        "posted_period_end": null
+      },
+      "status": "PUBLISHED",
+      "sortOrder": 0,
+      "mediaFiles": [],
+      "createdAt": "2026-10-05T09:00:00",
+      "updatedAt": "2026-10-05T09:00:00"
+    },
+    {
+      "id": 8105,
+      "contentTypeSlug": "columns",
+      "data": {
+        "article_title": "地域の店舗が検索で見つけてもらうために",
+        "subtitle": null,
+        "category": "集客",
+        "tag_name": "集客",
+        "author_name": null,
+        "body": "「地域名＋業種」で検索したときに、自分のお店が表示されるかどうかは集客に大きく影響します。\n\nお知らせやコラムを定期的に更新することは、検索で見つけてもらうための基本です。",
+        "published_date": "2026-09-28",
+        "attachment_1": "/images/illustrations/growth.png",
+        "attachment_2": null,
+        "posted_period_start": "2026-09-28T00:00:00.000Z",
+        "posted_period_end": null
+      },
+      "status": "PUBLISHED",
+      "sortOrder": 0,
+      "mediaFiles": [],
+      "createdAt": "2026-09-28T09:00:00",
+      "updatedAt": "2026-09-28T09:00:00"
+    },
+    {
+      "id": 8106,
+      "contentTypeSlug": "columns",
+      "data": {
+        "article_title": "自社ジムで試した、集客のはじめの一歩",
+        "subtitle": null,
+        "category": "ジム運営",
+        "tag_name": "ジム運営",
+        "author_name": null,
+        "body": "私たちが運営するジム「101FIT」で、まず取り組んだのは「今のお客様の声を聞くこと」でした。\n\n通い始めたきっかけを聞くと、見るべき場所が分かってきます。",
+        "published_date": "2026-09-21",
+        "attachment_1": null,
+        "attachment_2": null,
+        "posted_period_start": "2026-09-21T00:00:00.000Z",
+        "posted_period_end": null
+      },
+      "status": "PUBLISHED",
+      "sortOrder": 0,
+      "mediaFiles": [],
+      "createdAt": "2026-09-21T09:00:00",
+      "updatedAt": "2026-09-21T09:00:00"
+    },
+    {
+      "id": 8107,
+      "contentTypeSlug": "columns",
+      "data": {
+        "article_title": "電話予約からネット予約へ切り替えるときの注意点",
+        "subtitle": null,
+        "category": "予約",
+        "tag_name": "予約",
+        "author_name": null,
+        "body": "ネット予約を始めると、電話対応の時間を減らせます。\n\nただし、電話予約に慣れたお客様もいるため、しばらくは両方を受け付けるのがおすすめです。",
+        "published_date": "2026-09-14",
+        "attachment_1": "/images/illustrations/reserve.png",
+        "attachment_2": null,
+        "posted_period_start": "2026-09-14T00:00:00.000Z",
+        "posted_period_end": null
+      },
+      "status": "PUBLISHED",
+      "sortOrder": 0,
+      "mediaFiles": [],
+      "createdAt": "2026-09-14T09:00:00",
+      "updatedAt": "2026-09-14T09:00:00"
+    },
+    {
+      "id": 8108,
+      "contentTypeSlug": "columns",
+      "data": {
+        "article_title": "アクセス解析で最初に見るべき数字",
+        "subtitle": null,
+        "category": "解析",
+        "tag_name": "解析",
+        "author_name": null,
+        "body": "アクセス解析の画面には多くの数字が並びますが、最初に見るべきなのは「問い合わせや電話につながったか」です。\n\nボタンの反応を記録しておくと、ホームページが成果につながっているかが分かります。",
+        "published_date": "2026-09-07",
+        "attachment_1": "/images/illustrations/analytics.png",
+        "attachment_2": null,
+        "posted_period_start": "2026-09-07T00:00:00.000Z",
+        "posted_period_end": null
+      },
+      "status": "PUBLISHED",
+      "sortOrder": 0,
+      "mediaFiles": [],
+      "createdAt": "2026-09-07T09:00:00",
+      "updatedAt": "2026-09-07T09:00:00"
+    },
+    {
+      "id": 8109,
+      "contentTypeSlug": "columns",
+      "data": {
+        "article_title": "一度来たお客様に、また来てもらうために",
+        "subtitle": null,
+        "category": "リピート",
+        "tag_name": "リピート",
+        "author_name": null,
+        "body": "新しいお客様を増やすことと同じくらい、一度来てくれたお客様に戻ってきてもらうことが大切です。\n\n再来店のリマインドやクーポンは、そのきっかけづくりになります。",
+        "published_date": "2026-08-31",
+        "attachment_1": null,
+        "attachment_2": null,
+        "posted_period_start": "2026-08-31T00:00:00.000Z",
+        "posted_period_end": null
+      },
+      "status": "PUBLISHED",
+      "sortOrder": 0,
+      "mediaFiles": [],
+      "createdAt": "2026-08-31T09:00:00",
+      "updatedAt": "2026-08-31T09:00:00"
+    },
+    {
+      "id": 8110,
+      "contentTypeSlug": "columns",
+      "data": {
+        "article_title": "応募が来ない求人に足りないもの",
+        "subtitle": null,
+        "category": "求人原稿",
+        "tag_name": "求人原稿",
+        "author_name": null,
+        "body": "応募が集まらない求人を見直すと、「働く姿が想像できない」ことが多くあります。\n\n写真や1日の流れを加えるだけで、反応が変わることがあります。",
+        "published_date": "2026-08-24",
+        "attachment_1": null,
+        "attachment_2": null,
+        "posted_period_start": "2026-08-24T00:00:00.000Z",
+        "posted_period_end": null
+      },
+      "status": "PUBLISHED",
+      "sortOrder": 0,
+      "mediaFiles": [],
+      "createdAt": "2026-08-24T09:00:00",
+      "updatedAt": "2026-08-24T09:00:00"
+    },
+    {
+      "id": 8111,
+      "contentTypeSlug": "columns",
+      "data": {
+        "article_title": "ホームページの「期限切れ」に気をつけたいこと",
+        "subtitle": null,
+        "category": "ホームページ運用",
+        "tag_name": "ホームページ運用",
+        "author_name": null,
+        "body": "ドメインやSSLの更新期限が切れると、ホームページが表示されなくなることがあります。\n\n期限が近づいたときにお知らせが届く仕組みにしておくと安心です。",
+        "published_date": "2026-08-17",
+        "attachment_1": null,
+        "attachment_2": null,
+        "posted_period_start": "2026-08-17T00:00:00.000Z",
+        "posted_period_end": null
+      },
+      "status": "PUBLISHED",
+      "sortOrder": 0,
+      "mediaFiles": [],
+      "createdAt": "2026-08-17T09:00:00",
+      "updatedAt": "2026-08-17T09:00:00"
+    },
+    {
+      "id": 8112,
+      "contentTypeSlug": "columns",
+      "data": {
+        "article_title": "AIでの見え方を確認してみましょう",
+        "subtitle": null,
+        "category": "AI活用",
+        "tag_name": "AI活用",
+        "author_name": null,
+        "body": "AI検索で自社がどのように紹介されているか、確認したことはありますか。\n\n会社の情報を正しく、分かりやすくホームページに載せておくことが、AIに正しく紹介してもらう第一歩です。",
+        "published_date": "2026-08-10",
+        "attachment_1": null,
+        "attachment_2": null,
+        "posted_period_start": "2026-08-10T00:00:00.000Z",
+        "posted_period_end": null
+      },
+      "status": "PUBLISHED",
+      "sortOrder": 0,
+      "mediaFiles": [],
+      "createdAt": "2026-08-10T09:00:00",
+      "updatedAt": "2026-08-10T09:00:00"
+    }
+  ]
+}

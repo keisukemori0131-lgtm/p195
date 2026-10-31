@@ -1,0 +1,292 @@
+{
+  "items": [
+    {
+      "id": 6101,
+      "contentTypeSlug": "news",
+      "data": {
+        "notice_date": "2026-10-28",
+        "tag_name": "お知らせ",
+        "article_title": "コーポレートサイトを公開しました",
+        "subtitle": "株式会社レゴリスの新しいホームページ",
+        "body": "株式会社レゴリスのコーポレートサイトを公開しました。\n\n求人情報コンサル、ホームページ制作・運用「REGOLITH ORBIT」、ジム「101FIT」の3つの事業をご紹介しています。\n\nご相談はお問い合わせフォームまたはお電話で受け付けています。",
+        "thumbnail": "/images/hero/slide-1.svg",
+        "attachment_1": "/images/illustrations/partner.png",
+        "attachment_2": null,
+        "attachment_3": null,
+        "related_url": "https://regolith-orbit.jp/",
+        "place": "北海道石狩市",
+        "posted_period_start": "2026-10-28T00:00:00.000Z",
+        "posted_period_end": null
+      },
+      "status": "PUBLISHED",
+      "sortOrder": 0,
+      "mediaFiles": [],
+      "createdAt": "2026-10-28T09:00:00",
+      "updatedAt": "2026-10-28T09:00:00"
+    },
+    {
+      "id": 6102,
+      "contentTypeSlug": "news",
+      "data": {
+        "notice_date": "2026-10-21",
+        "tag_name": "サービス",
+        "article_title": "REGOLITH ORBIT に「AIでの見え方レポート」を追加しました",
+        "subtitle": null,
+        "body": "AI検索で自社がどのように紹介されているかを確認できるレポート機能を追加しました。\n\n競合ウォッチとあわせて、月次のミニレポートでご確認いただけます。",
+        "thumbnail": "/images/illustrations/analytics.png",
+        "attachment_1": null,
+        "attachment_2": null,
+        "attachment_3": null,
+        "posted_period_start": "2026-10-21T00:00:00.000Z",
+        "posted_period_end": null
+      },
+      "status": "PUBLISHED",
+      "sortOrder": 0,
+      "mediaFiles": [],
+      "createdAt": "2026-10-21T09:00:00",
+      "updatedAt": "2026-10-21T09:00:00"
+    },
+    {
+      "id": 6103,
+      "contentTypeSlug": "news",
+      "data": {
+        "notice_date": "2026-10-14",
+        "tag_name": "101FIT",
+        "article_title": "101FIT 年末年始の営業について",
+        "subtitle": null,
+        "body": "101FIT の年末年始の営業についてのお知らせです。\n\n詳しくは 101FIT 公式サイトおよび Instagram でご案内します。",
+        "thumbnail": null,
+        "attachment_1": null,
+        "attachment_2": null,
+        "attachment_3": null,
+        "posted_period_start": "2026-10-14T00:00:00.000Z",
+        "posted_period_end": null
+      },
+      "status": "PUBLISHED",
+      "sortOrder": 0,
+      "mediaFiles": [],
+      "createdAt": "2026-10-14T09:00:00",
+      "updatedAt": "2026-10-14T09:00:00"
+    },
+    {
+      "id": 6104,
+      "contentTypeSlug": "news",
+      "data": {
+        "notice_date": "2026-10-07",
+        "tag_name": "サービス",
+        "article_title": "採用ページ・Googleしごと検索対応のご案内",
+        "subtitle": "求人を出すところから応募が届くまで",
+        "body": "REGOLITH ORBIT の採用ページ機能を使うと、ホームページに掲載した求人を Googleしごと検索に表示させることができます。\n\n求人原稿の作成・改善とあわせてご相談ください。",
+        "thumbnail": "/images/illustrations/interview.png",
+        "attachment_1": null,
+        "attachment_2": null,
+        "attachment_3": null,
+        "posted_period_start": "2026-10-07T00:00:00.000Z",
+        "posted_period_end": null
+      },
+      "status": "PUBLISHED",
+      "sortOrder": 0,
+      "mediaFiles": [],
+      "createdAt": "2026-10-07T09:00:00",
+      "updatedAt": "2026-10-07T09:00:00"
+    },
+    {
+      "id": 6105,
+      "contentTypeSlug": "news",
+      "data": {
+        "notice_date": "2026-09-30",
+        "tag_name": "お知らせ",
+        "article_title": "求人原稿の個別相談を受け付けています",
+        "subtitle": null,
+        "body": "応募が集まらない、どこを直せばよいか分からない、といったお悩みをお聞きし、求人原稿の改善点をお伝えします。\n\nお問い合わせフォームからお申し込みください。",
+        "thumbnail": "/images/illustrations/meeting.png",
+        "attachment_1": null,
+        "attachment_2": null,
+        "attachment_3": null,
+        "posted_period_start": "2026-09-30T00:00:00.000Z",
+        "posted_period_end": null
+      },
+      "status": "PUBLISHED",
+      "sortOrder": 0,
+      "mediaFiles": [],
+      "createdAt": "2026-09-30T09:00:00",
+      "updatedAt": "2026-09-30T09:00:00"
+    },
+    {
+      "id": 6106,
+      "contentTypeSlug": "news",
+      "data": {
+        "notice_date": "2026-09-22",
+        "tag_name": "サービス",
+        "article_title": "LINEからのお知らせ投稿に写真の自動調整を追加しました",
+        "subtitle": null,
+        "body": "LINEで送った写真の明るさやサイズを整えてから掲載するようになりました。\n\nスマホで撮った写真をそのまま送っていただけます。",
+        "thumbnail": null,
+        "attachment_1": null,
+        "attachment_2": null,
+        "attachment_3": null,
+        "posted_period_start": "2026-09-22T00:00:00.000Z",
+        "posted_period_end": null
+      },
+      "status": "PUBLISHED",
+      "sortOrder": 0,
+      "mediaFiles": [],
+      "createdAt": "2026-09-22T09:00:00",
+      "updatedAt": "2026-09-22T09:00:00"
+    },
+    {
+      "id": 6107,
+      "contentTypeSlug": "news",
+      "data": {
+        "notice_date": "2026-09-15",
+        "tag_name": "101FIT",
+        "article_title": "101FIT の Instagram で最新情報を発信しています",
+        "subtitle": null,
+        "body": "101FIT の日々の様子やトレーニングのポイントを Instagram で発信しています。ぜひフォローしてください。",
+        "thumbnail": null,
+        "attachment_1": null,
+        "attachment_2": null,
+        "attachment_3": null,
+        "posted_period_start": "2026-09-15T00:00:00.000Z",
+        "posted_period_end": null
+      },
+      "status": "PUBLISHED",
+      "sortOrder": 0,
+      "mediaFiles": [],
+      "createdAt": "2026-09-15T09:00:00",
+      "updatedAt": "2026-09-15T09:00:00"
+    },
+    {
+      "id": 6108,
+      "contentTypeSlug": "news",
+      "data": {
+        "notice_date": "2026-09-08",
+        "tag_name": "サービス",
+        "article_title": "ネット予約に「キャンセル待ち」を追加しました",
+        "subtitle": null,
+        "body": "満席の枠にキャンセル待ちを登録できるようになりました。キャンセルが出ると順番にご案内します。",
+        "thumbnail": "/images/illustrations/reserve.png",
+        "attachment_1": null,
+        "attachment_2": null,
+        "attachment_3": null,
+        "posted_period_start": "2026-09-08T00:00:00.000Z",
+        "posted_period_end": null
+      },
+      "status": "PUBLISHED",
+      "sortOrder": 0,
+      "mediaFiles": [],
+      "createdAt": "2026-09-08T09:00:00",
+      "updatedAt": "2026-09-08T09:00:00"
+    },
+    {
+      "id": 6109,
+      "contentTypeSlug": "news",
+      "data": {
+        "notice_date": "2026-09-01",
+        "tag_name": "お知らせ",
+        "article_title": "石狩・札幌圏の店舗向けホームページ相談会のご案内",
+        "subtitle": "予約・問い合わせ対応を楽にしたい方へ",
+        "body": "予約や問い合わせの対応を楽にしたい店舗の方を対象に、ホームページの相談会を行います。\n\n日程はお問い合わせフォームからご相談ください。",
+        "thumbnail": null,
+        "attachment_1": null,
+        "attachment_2": null,
+        "attachment_3": null,
+        "posted_period_start": "2026-09-01T00:00:00.000Z",
+        "posted_period_end": null
+      },
+      "status": "PUBLISHED",
+      "sortOrder": 0,
+      "mediaFiles": [],
+      "createdAt": "2026-09-01T09:00:00",
+      "updatedAt": "2026-09-01T09:00:00"
+    },
+    {
+      "id": 6110,
+      "contentTypeSlug": "news",
+      "data": {
+        "notice_date": "2026-08-25",
+        "tag_name": "サービス",
+        "article_title": "受信箱の LINE 通知に対応しました",
+        "subtitle": null,
+        "body": "ホームページからの問い合わせが届くと、LINEにすぐ通知が届くようになりました。見落としを防げます。",
+        "thumbnail": null,
+        "attachment_1": null,
+        "attachment_2": null,
+        "attachment_3": null,
+        "posted_period_start": "2026-08-25T00:00:00.000Z",
+        "posted_period_end": null
+      },
+      "status": "PUBLISHED",
+      "sortOrder": 0,
+      "mediaFiles": [],
+      "createdAt": "2026-08-25T09:00:00",
+      "updatedAt": "2026-08-25T09:00:00"
+    },
+    {
+      "id": 6111,
+      "contentTypeSlug": "news",
+      "data": {
+        "notice_date": "2026-08-18",
+        "tag_name": "お知らせ",
+        "article_title": "夏季休業のお知らせ",
+        "subtitle": null,
+        "body": "夏季休業期間中にいただいたお問い合わせには、休業明けに順次ご返信いたします。",
+        "thumbnail": null,
+        "attachment_1": null,
+        "attachment_2": null,
+        "attachment_3": null,
+        "posted_period_start": "2026-08-18T00:00:00.000Z",
+        "posted_period_end": null
+      },
+      "status": "PUBLISHED",
+      "sortOrder": 0,
+      "mediaFiles": [],
+      "createdAt": "2026-08-18T09:00:00",
+      "updatedAt": "2026-08-18T09:00:00"
+    },
+    {
+      "id": 6112,
+      "contentTypeSlug": "news",
+      "data": {
+        "notice_date": "2026-08-04",
+        "tag_name": "サービス",
+        "article_title": "AIコラム自動生成の提供を開始しました",
+        "subtitle": null,
+        "body": "週1回、AIがコラムを自動で作成し、ホームページに掲載する機能の提供を開始しました。",
+        "thumbnail": "/images/illustrations/admin.png",
+        "attachment_1": null,
+        "attachment_2": null,
+        "attachment_3": null,
+        "posted_period_start": "2026-08-04T00:00:00.000Z",
+        "posted_period_end": null
+      },
+      "status": "PUBLISHED",
+      "sortOrder": 0,
+      "mediaFiles": [],
+      "createdAt": "2026-08-04T09:00:00",
+      "updatedAt": "2026-08-04T09:00:00"
+    },
+    {
+      "id": 6113,
+      "contentTypeSlug": "news",
+      "data": {
+        "notice_date": "2026-07-28",
+        "tag_name": "お知らせ",
+        "article_title": "REGOLITH ORBIT のサービスサイトを公開しました",
+        "subtitle": null,
+        "body": "ホームページ制作・運用サービス「REGOLITH ORBIT」のサービスサイトを公開しました。機能の詳細をご覧いただけます。",
+        "thumbnail": null,
+        "attachment_1": null,
+        "attachment_2": null,
+        "attachment_3": null,
+        "posted_period_start": "2026-07-28T00:00:00.000Z",
+        "posted_period_end": null
+      },
+      "status": "PUBLISHED",
+      "sortOrder": 0,
+      "mediaFiles": [],
+      "createdAt": "2026-07-28T09:00:00",
+      "updatedAt": "2026-07-28T09:00:00"
+    }
+  ]
+}

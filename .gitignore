@@ -1,0 +1,31 @@
+# dependencies / build
+node_modules
+dist
+dist-ssr
+.wrangler
+
+# logs
+*.log
+npm-debug.log*
+
+# editor
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+
+# ローカル用シークレット
+.env.local
+.env.*.local
+.dev.vars
+
+# UpNote ローカル JSON（作業コピー・APIエクスポート）。サンプルのみコミット
+public/upnote-local/*.json
+!public/upnote-local/*.sample.json
+
+# 支給写真の原本（Web には public/images/ に最適化済みを配置）
+photo/
+
+# 作業用の一時ファイル（検証スクリーンショット等）
+/tmp-*
+scripts/tmp-*
