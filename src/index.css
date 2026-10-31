@@ -199,29 +199,25 @@ main {
   }
 }
 
-/* ---------- 濃紺の宇宙（星は 2 種類の大きさのタイルを重ねて繰り返しを目立たせない） ---------- */
+/* ---------- 濃紺の宇宙（ChatGPT で生成した星空の写真。左側は文字が乗るため暗いグラデーションを重ねる） ---------- */
 .space {
   position: relative;
   color: var(--c-white);
-  background-color: var(--c-night);
+  background-color: #070a12;
   background-image:
-    radial-gradient(circle at 40px 60px, rgba(255, 255, 255, 0.75) 0 1px, transparent 1.6px),
-    radial-gradient(circle at 210px 150px, rgba(255, 255, 255, 0.45) 0 0.8px, transparent 1.4px),
-    radial-gradient(circle at 330px 40px, rgba(255, 255, 255, 0.6) 0 0.9px, transparent 1.5px),
-    radial-gradient(circle at 120px 260px, rgba(255, 255, 255, 0.35) 0 0.8px, transparent 1.4px),
-    radial-gradient(circle at 520px 300px, rgba(255, 255, 255, 0.7) 0 1.1px, transparent 1.8px),
-    radial-gradient(circle at 460px 90px, rgba(255, 255, 255, 0.4) 0 0.7px, transparent 1.3px),
-    radial-gradient(ellipse 55% 90% at 78% 40%, rgba(74, 92, 130, 0.22), transparent 70%),
-    linear-gradient(180deg, #0c111c 0%, #111a2b 100%);
-  background-size:
-    420px 320px,
-    420px 320px,
-    420px 320px,
-    420px 320px,
-    640px 420px,
-    640px 420px,
-    100% 100%,
-    100% 100%;
+    linear-gradient(90deg, rgba(6, 9, 16, 0.55) 0%, rgba(6, 9, 16, 0.15) 45%, rgba(6, 9, 16, 0) 70%),
+    url('/images/brand/space-wide.webp');
+  background-size: cover, cover;
+  background-position: center, 60% center;
+  background-repeat: no-repeat;
+}
+/* 見出し帯（細長い）は天の川の控えめな方を使う */
+.page-hero.space,
+.article-hero.space {
+  background-image:
+    linear-gradient(90deg, rgba(6, 9, 16, 0.5) 0%, rgba(6, 9, 16, 0.1) 50%, rgba(6, 9, 16, 0) 75%),
+    url('/images/brand/space-band.webp');
+  background-position: center, 70% 30%;
 }
 /* 名刺の色ブロックを縦に並べた帯 */
 .v-strip {
@@ -261,7 +257,7 @@ main {
   fill: #ffffff;
 }
 .moon-orbit--dark .moon-orbit__moon {
-  filter: drop-shadow(0 0 48px rgba(170, 186, 214, 0.18));
+  filter: drop-shadow(0 0 36px rgba(190, 204, 230, 0.22)) drop-shadow(0 0 90px rgba(150, 170, 210, 0.12));
 }
 .moon-orbit--light .moon-orbit__ring ellipse {
   stroke: #8f959c;
@@ -1678,8 +1674,8 @@ main {
   width: clamp(280px, 29vw, 420px);
   max-width: none;
   pointer-events: none;
-  opacity: 0.9;
-  filter: brightness(0.82);
+  opacity: 0.95;
+  filter: brightness(0.85) drop-shadow(0 0 40px rgba(190, 204, 230, 0.18));
 }
 .cta-band__inner {
   position: relative;

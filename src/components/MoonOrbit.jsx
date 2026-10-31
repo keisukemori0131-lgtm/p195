@@ -39,10 +39,10 @@ export default function MoonOrbit({ className = '', tone = 'dark', eager = false
       <Ring />
       <img
         className="moon-orbit__moon"
-        src={publicUrl('/images/brand/moon.svg')}
+        src={publicUrl('/images/brand/moon.webp')}
         alt=""
-        width={600}
-        height={600}
+        width={800}
+        height={800}
         loading={eager ? 'eager' : 'lazy'}
         decoding="async"
       />

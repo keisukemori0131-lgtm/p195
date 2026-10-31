@@ -9,7 +9,7 @@ import { publicUrl } from '../lib/publicUrl.js'
 export default function CtaBand() {
   return (
     <section className="cta-band space reveal" aria-labelledby="cta-band-title">
-      <img className="cta-band__moon" src={publicUrl('/images/brand/moon.svg')} alt="" aria-hidden="true" width={600} height={600} loading="lazy" decoding="async" />
+      <img className="cta-band__moon" src={publicUrl('/images/brand/moon.webp')} alt="" aria-hidden="true" width={800} height={800} loading="lazy" decoding="async" />
       <div className="container cta-band__inner">
         <h2 id="cta-band-title" className="cta-band__title">
           人が来ない、問い合わせが来ない。

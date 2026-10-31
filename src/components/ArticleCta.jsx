@@ -38,7 +38,7 @@ export default function ArticleCta({ item }) {
   const topic = pickTopic(item)
   return (
     <section className="cta-band article-cta space" aria-labelledby="article-cta-title">
-      <img className="cta-band__moon" src={publicUrl('/images/brand/moon.svg')} alt="" aria-hidden="true" width={600} height={600} loading="lazy" decoding="async" />
+      <img className="cta-band__moon" src={publicUrl('/images/brand/moon.webp')} alt="" aria-hidden="true" width={800} height={800} loading="lazy" decoding="async" />
       <div className="container cta-band__inner">
         <p className="cta-band__tag serif-tag" lang="en">
           {SITE.slogan}
