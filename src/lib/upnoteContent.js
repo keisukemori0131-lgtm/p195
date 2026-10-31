@@ -120,15 +120,21 @@ export function getContentTags(item) {
 
 export function getContentImageUrls(item) {
   const urls = []
-  const d = item?.data || {}
-  for (const key of ['thumbnail', 'attachment_1', 'attachment_2', 'attachment_3']) {
-    if (isImageUrl(d[key])) urls.push(resolveMediaUrl(d[key]))
+  // 同じ画像がデータ項目（thumbnail / attachment_*）と mediaFiles の両方に入ってくるため、
+  // ファイルの場所（署名付き URL のクエリを除いた部分）で重複を除く
+  const seen = new Set()
+  const add = (raw) => {
+    if (!isImageUrl(raw)) return
+    const url = resolveMediaUrl(raw)
+    const key = String(url).split(/[?#]/)[0]
+    if (seen.has(key)) return
+    seen.add(key)
+    urls.push(url)
   }
+  const d = item?.data || {}
+  for (const key of ['thumbnail', 'attachment_1', 'attachment_2', 'attachment_3']) add(d[key])
   if (Array.isArray(item?.mediaFiles)) {
-    for (const m of item.mediaFiles) {
-      const u = m?.fileUrl || m?.url
-      if (isImageUrl(u)) urls.push(resolveMediaUrl(u))
-    }
+    for (const m of item.mediaFiles) add(m?.fileUrl || m?.url)
   }
   return urls
 }
