@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import Logo from './Logo.jsx'
 import Icon from './Icon.jsx'
@@ -34,6 +34,29 @@ export default function Header() {
     }
   }, [open])
 
+  // ページの読み進み具合（名刺の色ブロックの帯がヘッダーの下で伸びる）
+  const progressRef = useRef(null)
+  useEffect(() => {
+    let frame = 0
+    const update = () => {
+      frame = 0
+      const max = document.documentElement.scrollHeight - window.innerHeight
+      const p = max > 0 ? Math.min(1, window.scrollY / max) : 0
+      if (progressRef.current) progressRef.current.style.transform = `scaleX(${p})`
+    }
+    const onScroll = () => {
+      if (!frame) frame = window.requestAnimationFrame(update)
+    }
+    update()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', onScroll)
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onScroll)
+      if (frame) window.cancelAnimationFrame(frame)
+    }
+  }, [pathname])
+
   const onNavClick = () => {
     setOpen(false)
     scrollToTop()
@@ -43,6 +66,7 @@ export default function Header() {
 
   return (
     <header className="site-header">
+      <span className="scroll-progress" ref={progressRef} aria-hidden="true" />
       <div className="container site-header__inner">
         <Link to="/" className="brand" aria-label={`${SITE_LABEL} トップへ`} onClick={onNavClick}>
           <Logo showName height={40} />

@@ -23,6 +23,7 @@ import ArticleRichBody from './ArticleRichBody.jsx'
 import ArticleFaq from './ArticleFaq.jsx'
 import ArticleAuthorCard, { authorPhoto } from './ArticleAuthorCard.jsx'
 import MoonOrbit from './MoonOrbit.jsx'
+import Twinkle from './Twinkle.jsx'
 import ArticleCta from './ArticleCta.jsx'
 import { SITE, SITE_LABEL, SITE_URL } from '../constants/site.js'
 
@@ -142,6 +143,7 @@ export default function ArticleDetail({ id, basePath, listLabel, jsonLdType = 'N
       <article className="article">
         {/* 01 見出し帯 */}
         <header className="article-hero space">
+          <Twinkle count={18} seed={53} />
           <span className="v-strip article-hero__strip" aria-hidden="true" />
           <MoonOrbit className="article-hero__moon" eager />
           <div className="container article-hero__inner">

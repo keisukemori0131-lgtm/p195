@@ -3,6 +3,7 @@ import DocumentMeta from '../components/DocumentMeta.jsx'
 import Hero from '../components/Hero.jsx'
 import Icon from '../components/Icon.jsx'
 import MoonOrbit from '../components/MoonOrbit.jsx'
+import Twinkle from '../components/Twinkle.jsx'
 import HomeContentExcerpt from '../components/HomeContentExcerpt.jsx'
 import CtaBand from '../components/CtaBand.jsx'
 import RepCard from '../components/RepCard.jsx'
@@ -215,6 +216,7 @@ export default function HomePage() {
           </div>
           {/* 写真の星空 + 月と軌道（ファーストビューと同じ素材）。石狩の写真が用意できたら差し替える */}
           <div className="about-visual space reveal" aria-hidden="true">
+            <Twinkle count={14} seed={71} />
             <MoonOrbit className="about-visual__moon" />
             <p className="about-visual__label" lang="en">
               <span>ISHIKARI, HOKKAIDO</span>

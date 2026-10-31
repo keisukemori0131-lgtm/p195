@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import Icon from './Icon.jsx'
+import Twinkle from './Twinkle.jsx'
 import { PHONE_DISPLAY, PHONE_TEL } from '../constants/site.js'
 import { scrollToTop } from '../constants/nav.js'
 import { publicUrl } from '../lib/publicUrl.js'
@@ -9,6 +10,7 @@ import { publicUrl } from '../lib/publicUrl.js'
 export default function CtaBand() {
   return (
     <section className="cta-band space reveal" aria-labelledby="cta-band-title">
+      <Twinkle count={20} seed={37} />
       <img className="cta-band__moon" src={publicUrl('/images/brand/moon.webp')} alt="" aria-hidden="true" width={800} height={800} loading="lazy" decoding="async" />
       <div className="container cta-band__inner">
         <h2 id="cta-band-title" className="cta-band__title">

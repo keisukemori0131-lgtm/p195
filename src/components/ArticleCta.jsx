@@ -3,6 +3,7 @@ import { SITE } from '../constants/site.js'
 import { scrollToTop } from '../constants/nav.js'
 import { publicUrl } from '../lib/publicUrl.js'
 import Icon from './Icon.jsx'
+import Twinkle from './Twinkle.jsx'
 import { getContentTitle, getContentTags, getContentCategory } from '../lib/upnoteContent.js'
 
 // コラム末尾の導線。記事の内容に合わせて案内先を振り分ける（cre-comsence.com の ColumnCta 方式）
@@ -38,6 +39,7 @@ export default function ArticleCta({ item }) {
   const topic = pickTopic(item)
   return (
     <section className="cta-band article-cta space" aria-labelledby="article-cta-title">
+      <Twinkle count={20} seed={37} />
       <img className="cta-band__moon" src={publicUrl('/images/brand/moon.webp')} alt="" aria-hidden="true" width={800} height={800} loading="lazy" decoding="async" />
       <div className="container cta-band__inner">
         <p className="cta-band__tag serif-tag" lang="en">
