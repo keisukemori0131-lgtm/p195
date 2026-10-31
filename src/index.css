@@ -1834,6 +1834,11 @@ main {
   color: var(--c-grey-text);
 }
 .site-footer__copy {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 4px 24px;
   margin: 16px 0 0;
   padding-top: 12px;
   border-top: 1px solid var(--c-line);
@@ -1842,6 +1847,15 @@ main {
   font-size: 0.8rem;
   letter-spacing: 0.06em;
   color: var(--c-grey-text);
+}
+/* 制作会社のクレジット（控えめに） */
+.site-footer__credit {
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: #8a8f96;
+}
+.site-footer__credit a {
+  color: inherit;
 }
 .back-to-top {
   position: fixed;

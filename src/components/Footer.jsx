@@ -55,9 +55,15 @@ export default function Footer() {
         </div>
       </div>
       <div className="container">
-        <p className="site-footer__copy">
+        <div className="site-footer__copy">
           <small>© {year} {SITE.name}</small>
-        </p>
+          <small className="site-footer__credit" lang="en">
+            created by{' '}
+            <a href="https://cre-comsence.com/" target="_blank" rel="noopener noreferrer">
+              CRE-COMSENCE
+            </a>
+          </small>
+        </div>
       </div>
     </footer>
   )
