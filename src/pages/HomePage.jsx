@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import DocumentMeta from '../components/DocumentMeta.jsx'
 import Hero from '../components/Hero.jsx'
 import Icon from '../components/Icon.jsx'
+import MoonOrbit from '../components/MoonOrbit.jsx'
 import HomeContentExcerpt from '../components/HomeContentExcerpt.jsx'
 import CtaBand from '../components/CtaBand.jsx'
 import RepCard from '../components/RepCard.jsx'
@@ -212,15 +213,14 @@ export default function HomePage() {
               </Link>
             </div>
           </div>
-          <div className="about-split__media reveal">
-            <img
-              src={publicUrl('/images/about/ishikari-night.svg')}
-              alt="石狩湾の夜。灯台の立つ海岸の上に、軌道を描く灰色の月が浮かぶイメージ図"
-              width={800}
-              height={600}
-              loading="lazy"
-              decoding="async"
-            />
+          {/* 写真の星空 + 月と軌道（ファーストビューと同じ素材）。石狩の写真が用意できたら差し替える */}
+          <div className="about-visual space reveal" aria-hidden="true">
+            <MoonOrbit className="about-visual__moon" />
+            <p className="about-visual__label" lang="en">
+              <span>ISHIKARI, HOKKAIDO</span>
+              <span className="about-visual__sub">Instantaneous power</span>
+            </p>
+            <span className="about-visual__strip" />
           </div>
         </div>
       </section>

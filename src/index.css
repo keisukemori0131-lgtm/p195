@@ -1281,11 +1281,64 @@ main {
   font-size: 0.9rem;
   color: var(--c-grey-text);
 }
-.about-split__media {
-  box-shadow: var(--shadow);
+/* 会社紹介の図版: 写真の星空 + 月と軌道 + 地名 + 名刺の色ブロック */
+.about-visual {
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  box-shadow: var(--shadow-lg);
+  background-position: center, 85% 20%;
 }
-.about-split__media img {
-  width: 100%;
+.about-visual__moon {
+  position: absolute;
+  right: -12%;
+  top: -4%;
+  width: 92%;
+}
+.about-visual__label {
+  position: absolute;
+  left: 28px;
+  bottom: 34px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0;
+  font-family: var(--font-en);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  color: rgba(255, 255, 255, 0.92);
+}
+.about-visual__label::before {
+  content: '';
+  width: 36px;
+  height: 1px;
+  margin-bottom: 12px;
+  background: rgba(255, 255, 255, 0.7);
+}
+.about-visual__sub {
+  font-family: var(--font-serif-en);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.7);
+}
+.about-visual__strip {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 8px;
+  background: linear-gradient(
+    90deg,
+    var(--c-red) 0 14.3%,
+    var(--c-yellow) 14.3% 28.6%,
+    var(--c-green) 28.6% 42.9%,
+    var(--c-navy) 42.9% 57.2%,
+    var(--c-blue) 57.2% 71.5%,
+    var(--c-maroon) 71.5% 85.8%,
+    var(--c-black) 85.8% 100%
+  );
 }
 
 /* ==========================================================================
