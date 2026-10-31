@@ -1,0 +1,158 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="石狩湾の夜。灯台の立つ海岸の上に、軌道を描く灰色の月が浮かぶイメージ図">
+  <!-- トップ「会社紹介」の図版。代表者の写真は使わず、石狩（石狩湾・石狩灯台）× 月と軌道 × 名刺の色ブロックで会社を表す -->
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0b101b" />
+      <stop offset="0.62" stop-color="#16213a" />
+      <stop offset="0.78" stop-color="#2b3a5c" />
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="1" r="0.7">
+      <stop offset="0" stop-color="#5a6c93" stop-opacity="0.55" />
+      <stop offset="1" stop-color="#5a6c93" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1b2740" />
+      <stop offset="1" stop-color="#0a101c" />
+    </linearGradient>
+    <!-- 月（public/images/brand/moon.svg と同じ作り。img の SVG は外部参照できないため内包） -->
+    <clipPath id="disc">
+      <circle cx="530" cy="190" r="92" />
+    </clipPath>
+    <radialGradient id="mbase" cx="0.4" cy="0.36" r="0.72">
+      <stop offset="0" stop-color="#dededc" />
+      <stop offset="0.5" stop-color="#b2b2b0" />
+      <stop offset="0.82" stop-color="#7f8081" />
+      <stop offset="1" stop-color="#46474a" />
+    </radialGradient>
+    <radialGradient id="mlimb" cx="0.42" cy="0.38" r="0.62">
+      <stop offset="0.6" stop-color="#000" stop-opacity="0" />
+      <stop offset="1" stop-color="#05070c" stop-opacity="0.7" />
+    </radialGradient>
+    <filter id="maria" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.024" numOctaves="4" seed="8" />
+      <feColorMatrix type="matrix" values="0 0 0 0 0.30  0 0 0 0 0.31  0 0 0 0 0.33  0 0 0 -6 3.25" />
+    </filter>
+    <filter id="relief" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.19" numOctaves="4" seed="21" result="t" />
+      <feDiffuseLighting in="t" surfaceScale="2.4" lighting-color="#ffffff" result="lit">
+        <feDistantLight azimuth="235" elevation="52" />
+      </feDiffuseLighting>
+      <feColorMatrix in="lit" type="saturate" values="0" />
+    </filter>
+    <radialGradient id="mhalo" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0.55" stop-color="#b8c4dc" stop-opacity="0.22" />
+      <stop offset="1" stop-color="#b8c4dc" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="beam" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#fff6d8" stop-opacity="0.45" />
+      <stop offset="1" stop-color="#fff6d8" stop-opacity="0" />
+    </linearGradient>
+    <clipPath id="frontHalf">
+      <rect x="0" y="190" width="800" height="200" />
+    </clipPath>
+  </defs>
+
+  <!-- 夜空 -->
+  <rect width="800" height="600" fill="url(#sky)" />
+  <rect y="250" width="800" height="200" fill="url(#glow)" />
+  <g fill="#ffffff">
+    <circle cx="48" cy="40" r="1.2" opacity="0.8" />
+    <circle cx="120" cy="96" r="0.9" opacity="0.5" />
+    <circle cx="196" cy="34" r="1.1" opacity="0.7" />
+    <circle cx="262" cy="128" r="0.8" opacity="0.45" />
+    <circle cx="318" cy="60" r="1.3" opacity="0.8" />
+    <circle cx="372" cy="150" r="0.8" opacity="0.4" />
+    <circle cx="410" cy="28" r="0.9" opacity="0.6" />
+    <circle cx="676" cy="52" r="1.2" opacity="0.75" />
+    <circle cx="742" cy="120" r="0.9" opacity="0.5" />
+    <circle cx="770" cy="214" r="1.1" opacity="0.6" />
+    <circle cx="700" cy="300" r="0.8" opacity="0.4" />
+    <circle cx="86" cy="190" r="1" opacity="0.55" />
+    <circle cx="150" cy="262" r="0.8" opacity="0.4" />
+    <circle cx="236" cy="220" r="1.1" opacity="0.6" />
+    <circle cx="30" cy="300" r="0.8" opacity="0.35" />
+    <circle cx="640" cy="22" r="0.8" opacity="0.5" />
+    <circle cx="300" cy="300" r="0.9" opacity="0.35" />
+    <circle cx="380" cy="240" r="0.7" opacity="0.35" />
+  </g>
+
+  <!-- 軌道（月の後ろ側） -->
+  <g transform="rotate(-18 530 190)" fill="none" stroke="#ffffff" stroke-opacity="0.75" stroke-width="1.6">
+    <ellipse cx="530" cy="190" rx="170" ry="46" />
+  </g>
+  <!-- 月 -->
+  <circle cx="530" cy="190" r="140" fill="url(#mhalo)" />
+  <g clip-path="url(#disc)">
+    <rect x="438" y="98" width="184" height="184" fill="url(#mbase)" />
+    <rect x="438" y="98" width="184" height="184" filter="url(#maria)" opacity="0.9" style="mix-blend-mode:multiply" />
+    <rect x="438" y="98" width="184" height="184" filter="url(#relief)" opacity="0.7" style="mix-blend-mode:overlay" />
+    <rect x="438" y="98" width="184" height="184" fill="url(#mlimb)" />
+  </g>
+  <!-- 軌道（月の手前側）と小さな星 -->
+  <g transform="rotate(-18 530 190)">
+    <ellipse cx="530" cy="190" rx="170" ry="46" fill="none" stroke="#ffffff" stroke-opacity="0.9" stroke-width="1.6" clip-path="url(#frontHalf)" />
+    <circle cx="676" cy="213" r="4.5" fill="#ffffff" />
+  </g>
+
+  <!-- 遠くの山並み（暑寒別の稜線のイメージ） -->
+  <path d="M300 420 L360 412 L430 404 L486 392 L522 404 L566 380 L610 398 L660 386 L712 402 L760 394 L800 404 V420 H300Z" fill="#1c2742" />
+
+  <!-- 海と月の照り返し -->
+  <rect y="418" width="800" height="182" fill="url(#sea)" />
+  <g fill="#d7dcea">
+    <rect x="512" y="428" width="36" height="2" opacity="0.55" />
+    <rect x="500" y="440" width="58" height="2" opacity="0.45" />
+    <rect x="518" y="452" width="30" height="2" opacity="0.5" />
+    <rect x="494" y="466" width="70" height="2" opacity="0.35" />
+    <rect x="510" y="480" width="44" height="2" opacity="0.4" />
+    <rect x="486" y="496" width="84" height="2" opacity="0.25" />
+    <rect x="504" y="512" width="54" height="2" opacity="0.3" />
+    <rect x="478" y="530" width="100" height="2" opacity="0.18" />
+  </g>
+  <g fill="#8796b8" opacity="0.25">
+    <rect x="380" y="448" width="40" height="1.5" />
+    <rect x="640" y="470" width="56" height="1.5" />
+    <rect x="300" y="500" width="64" height="1.5" />
+    <rect x="690" y="522" width="48" height="1.5" />
+  </g>
+
+  <!-- 海岸の砂丘と灯台（石狩灯台：赤白のしま） -->
+  <path d="M0 404 C80 396 150 388 230 400 C290 409 330 430 390 446 C420 454 440 470 450 488 L450 600 H0Z" fill="#0a0f19" />
+  <path d="M0 470 C110 458 230 470 340 500 C380 511 420 530 450 548 L450 600 H0Z" fill="#070b13" />
+  <!-- 灯台の光 -->
+  <path d="M182 300 L420 262 L420 330 Z" fill="url(#beam)" />
+  <g>
+    <path d="M168 400 L174 312 H192 L198 400 Z" fill="#f2f2ef" />
+    <path d="M171.2 356 L172.6 334 H193.4 L194.8 356 Z" fill="#d4322a" />
+    <path d="M168.6 392 L170 372 H196 L197.4 392 Z" fill="#d4322a" />
+    <rect x="170" y="300" width="26" height="12" fill="#1a2030" />
+    <rect x="174" y="302" width="18" height="8" fill="#fff3c4" />
+    <path d="M168 300 L183 288 L198 300 Z" fill="#d4322a" />
+    <rect x="164" y="398" width="38" height="6" fill="#141a26" />
+  </g>
+  <!-- 街のあかり -->
+  <g fill="#f2c45a">
+    <circle cx="60" cy="430" r="1.6" opacity="0.8" />
+    <circle cx="78" cy="436" r="1.3" opacity="0.6" />
+    <circle cx="104" cy="428" r="1.5" opacity="0.7" />
+    <circle cx="240" cy="438" r="1.3" opacity="0.6" />
+    <circle cx="262" cy="446" r="1.6" opacity="0.8" />
+    <circle cx="288" cy="452" r="1.2" opacity="0.5" />
+    <circle cx="130" cy="446" r="1.2" opacity="0.5" />
+  </g>
+
+  <!-- 地名 -->
+  <text x="40" y="548" font-family="'Barlow Condensed', 'Arial Narrow', Arial, sans-serif" font-size="20" font-weight="600" letter-spacing="5" fill="#ffffff" fill-opacity="0.85">ISHIKARI, HOKKAIDO</text>
+  <rect x="40" y="560" width="44" height="1.5" fill="#ffffff" fill-opacity="0.6" />
+
+  <!-- 名刺の色ブロック -->
+  <g>
+    <rect x="0" y="586" width="115" height="14" fill="#e0281e" />
+    <rect x="115" y="586" width="114" height="14" fill="#f2b80f" />
+    <rect x="229" y="586" width="114" height="14" fill="#5b9a34" />
+    <rect x="343" y="586" width="114" height="14" fill="#1d3d8a" />
+    <rect x="457" y="586" width="114" height="14" fill="#1f88cc" />
+    <rect x="571" y="586" width="114" height="14" fill="#8b2233" />
+    <rect x="685" y="586" width="115" height="14" fill="#111111" />
+  </g>
+</svg>

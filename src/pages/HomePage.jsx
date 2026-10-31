@@ -222,8 +222,8 @@ export default function HomePage() {
           </div>
           <div className="about-split__media reveal">
             <img
-              src={publicUrl('/images/about/office.svg')}
-              alt="灰色の月と石狩の地平線、色ブロックを組み合わせた会社のイメージ図"
+              src={publicUrl('/images/about/ishikari-night.svg')}
+              alt="石狩湾の夜。灯台の立つ海岸の上に、軌道を描く灰色の月が浮かぶイメージ図"
               width={800}
               height={600}
               loading="lazy"
