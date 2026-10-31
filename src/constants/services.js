@@ -1,4 +1,5 @@
 // サービス情報の単一ソース（トップのプレビュー・サービスページ・llms.txt で共用）
+// 写真（cover）は ChatGPT で生成（design/image-prompts.md）。人物の顔・代表者の写真は使っていない
 // 出典: 顧客YAML P195 の 主要サービス / USP / ブランドトーン。
 //   - 料金は掲載しない（特記事項）
 //   - 求人情報コンサルの対応媒体・料金は未確定（特記事項「一旦仮で」）のため、YAML にある範囲だけを書く
@@ -28,7 +29,7 @@ export const SERVICES = [
       },
     ],
     image: { src: '/images/illustrations/meeting.png', w: 828, h: 608, alt: '求人原稿について打ち合わせをする二人のイラスト' },
-    cover: { src: '/images/services/recruit.svg', alt: '求人原稿と応募者を色ブロックで結んだ図' },
+    cover: { src: '/images/services/recruit.webp', alt: '印刷した求人原稿を指さしながら、赤ペンで書き込んで相談している手元' },
   },
   {
     id: 'orbit',
@@ -41,7 +42,7 @@ export const SERVICES = [
       '「更新が止まる」「問い合わせを見落とす」「効果が分からない」。ホームページによくある悩みを、仕組みで解決します。オリジナルデザインの制作に、更新・問い合わせ対応・予約・分析・集客・リピートの運用システムをセットにしました。お知らせはLINEで送るだけで更新できます。',
     url: 'https://regolith-orbit.jp/',
     image: { src: '/images/illustrations/admin.png', w: 510, h: 602, alt: 'パソコンで管理画面を操作するビジネスパーソンのイラスト' },
-    cover: { src: '/images/services/orbit.svg', alt: 'ホームページの画面を中心に7つの機能を色ブロックで並べた図' },
+    cover: { src: '/images/services/orbit.webp', alt: 'ホームページの管理画面を開いたノートパソコンと、チャット画面のスマートフォンを操作する手元' },
   },
   {
     id: 'fit',
@@ -55,7 +56,7 @@ export const SERVICES = [
     url: 'https://101-fit.jp/',
     address: '北海道石狩市樽川3条1丁目19',
     image: { src: '/images/illustrations/gym.png', w: 355, h: 940, alt: 'ジムのインストラクターのイラスト' },
-    cover: { src: '/images/services/fit.svg', alt: 'ダンベルと色ブロックを組み合わせたジムのイメージ図' },
+    cover: { src: '/images/services/fit.webp', alt: 'ダンベルラックとトレーニングマシンが並ぶジムの室内' },
   },
 ]
 
