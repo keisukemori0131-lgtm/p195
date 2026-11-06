@@ -1,0 +1,66 @@
+{
+  "items": [
+    {
+      "id": 9101,
+      "contentTypeSlug": "case_studies",
+      "data": {
+        "case_title": "【サンプル】求人原稿を書き直し、仕事の中身が伝わる募集に",
+        "summary_one_line": "画面確認用のサンプルです。実在の会社の事例ではありません。",
+        "client_display_name": "サンプル飲食店 A",
+        "industry": "飲食",
+        "location_region": "北海道石狩市",
+        "category": "求人情報コンサル",
+        "tag_name": "求人情報コンサル,飲食",
+        "project_period_label": "約1か月",
+        "thumbnail": "/images/services/recruit.webp",
+        "body_challenge": "求人を出しても応募が集まらず、原稿は数年前のまま使っていました。\n\n・仕事内容が「接客業務全般」の一行だけ\n・職場の様子が分かる写真がない",
+        "body_approach": "■ 聞き取り\n店長とスタッフに、1日の流れと職場の良いところをお聞きしました。\n\n■ 原稿の書き直し\n1. 仕事内容を時間の流れで書き直し\n2. 写真の撮り方を提案\n3. 応募後の返信文を用意",
+        "body_result": "ここには、掲載後に起きた変化を書きます。数字は事実にもとづくものだけを載せます。",
+        "testimonial_quote": "ここには、お客様の声を書きます。（サンプル）",
+        "testimonial_author_name": "サンプル 太郎",
+        "testimonial_author_title": "店長",
+        "related_service_url": "/services/recruit"
+      },
+      "createdAt": "2026-10-20T01:00:00.000Z",
+      "updatedAt": "2026-10-20T01:00:00.000Z"
+    },
+    {
+      "id": 9102,
+      "contentTypeSlug": "case_studies",
+      "data": {
+        "case_title": "【サンプル】ホームページを作り直し、更新をLINEに",
+        "summary_one_line": "画面確認用のサンプルです。実在の会社の事例ではありません。",
+        "client_display_name": "サンプル工務店 B",
+        "industry": "建設",
+        "location_region": "北海道札幌市",
+        "category": "REGOLITH ORBIT",
+        "tag_name": "REGOLITH ORBIT,建設",
+        "project_period_label": "約2か月",
+        "thumbnail": "/images/services/orbit.webp",
+        "body_challenge": "更新を業者に頼むたびに日数がかかり、施工事例が古いままでした。",
+        "body_approach": "オリジナルデザインでホームページを作り直し、REGOLITH ORBIT の導入と操作説明を行いました。",
+        "body_result": "ここには、公開後に起きた変化を書きます。",
+        "deliverables_summary": "ホームページ一式、操作説明",
+        "related_service_url": "/services/orbit"
+      },
+      "createdAt": "2026-10-10T01:00:00.000Z",
+      "updatedAt": "2026-10-10T01:00:00.000Z"
+    },
+    {
+      "id": 9103,
+      "contentTypeSlug": "case_studies",
+      "data": {
+        "case_title": "【サンプル】ネット予約を入れ、電話の対応を減らす",
+        "summary_one_line": "画面確認用のサンプルです。実在の会社の事例ではありません。",
+        "client_display_name": "サンプル整体院 C",
+        "industry": "美容・健康",
+        "location_region": "北海道石狩市",
+        "category": "REGOLITH ORBIT",
+        "tag_name": "REGOLITH ORBIT,予約",
+        "body": "課題・取り組み・成果の項目を使わず、本文だけで書いた事例の表示確認用です。\n\n■ 見出しも使えます\n・箇条書きも使えます"
+      },
+      "createdAt": "2026-09-28T01:00:00.000Z",
+      "updatedAt": "2026-09-28T01:00:00.000Z"
+    }
+  ]
+}

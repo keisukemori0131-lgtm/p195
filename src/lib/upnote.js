@@ -199,6 +199,7 @@ export const fallback = (v, alt) => (v == null || v === '' ? alt : v)
 export const EMPTY_MESSAGES = {
   news: 'お知らせは現在登録されていません。',
   columns: 'コラムは現在登録されていません。',
+  case_studies: '実績・事例は現在準備中です。',
   faq: 'よくあるご質問は現在登録されていません。',
 }
 

@@ -12,7 +12,7 @@ const TOPICS = [
     keywords: ['求人', '採用', '応募', '面接', 'しごと検索', '人手不足'],
     title: '「求人を出しても応募が来ない」を、原稿から変えませんか。',
     lead: '求人原稿の作成・改善から、採用ページ・Googleしごと検索への掲載まで。自社ジムの採用で試してきた方法で、応募が届くまでを一緒に整えます。',
-    primary: { to: '/services#recruit', label: '求人情報コンサルを見る' },
+    primary: { to: '/services/recruit', label: '求人情報コンサルを見る' },
     secondary: '採用について相談する',
   },
   {
@@ -26,7 +26,7 @@ const TOPICS = [
 const DEFAULT_TOPIC = {
   title: 'ホームページ、公開してから止まっていませんか。',
   lead: 'REGOLITH ORBIT なら、LINEで送るだけでお知らせを更新でき、問い合わせは受信箱とLINEにすぐ届きます。更新・問い合わせ・予約・分析まで、公開後の運用をまとめて任せられます。',
-  primary: { to: '/services#orbit', label: 'REGOLITH ORBIT でできることを見る' },
+  primary: { to: '/services/orbit', label: 'REGOLITH ORBIT でできることを見る' },
   secondary: 'ホームページについて相談する',
 }
 

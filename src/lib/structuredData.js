@@ -12,6 +12,7 @@ const PAGE_TYPES = {
   '/contact': 'ContactPage',
   '/news': 'CollectionPage',
   '/column': 'CollectionPage',
+  '/works': 'CollectionPage',
 }
 
 /** 会社（LocalBusiness のサブタイプ ProfessionalService） */
@@ -56,10 +57,11 @@ export function buildOrganization({ siteUrl, site }) {
  * @param {string} [p.title]
  * @param {string} [p.description]
  * @param {string} [p.label]    パンくずのページ名
+ * @param {Array<{label: string, path: string}>} [p.crumbs] ホームと現在ページの間の階層
  * @param {string} p.siteUrl    本番オリジン（末尾スラッシュなし）。空なら URL・@id を省く
  * @param {object} p.site       site-data.json の中身
  */
-export function buildPageJsonLd({ path, title, description, label, siteUrl, site }) {
+export function buildPageJsonLd({ path, title, description, label, crumbs = [], siteUrl, site }) {
   const url = (p) => (siteUrl ? `${siteUrl}${p === '/' ? '/' : p}` : undefined)
   const id = (p, frag) => (siteUrl ? `${url(p)}#${frag}` : undefined)
   const ref = (p, frag) => (siteUrl ? { '@id': id(p, frag) } : undefined)
@@ -95,7 +97,8 @@ export function buildPageJsonLd({ path, title, description, label, siteUrl, site
         '@id': id(path, 'breadcrumb'),
         itemListElement: [
           { '@type': 'ListItem', position: 1, name: 'ホーム', item: url('/') },
-          { '@type': 'ListItem', position: 2, name: label },
+          ...crumbs.map((c, i) => ({ '@type': 'ListItem', position: i + 2, name: c.label, item: url(c.path) })),
+          { '@type': 'ListItem', position: crumbs.length + 2, name: label },
         ],
       })
     }

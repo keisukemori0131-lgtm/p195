@@ -7,6 +7,12 @@ import { Route, Routes } from 'react-router-dom'
 import Layout from './components/Layout.jsx'
 import HomePage from './pages/HomePage.jsx'
 import ServicesPage from './pages/ServicesPage.jsx'
+import ServiceRecruitPage from './pages/ServiceRecruitPage.jsx'
+import ServiceOrbitPage from './pages/ServiceOrbitPage.jsx'
+import ServiceFitPage from './pages/ServiceFitPage.jsx'
+import OrbitFeaturePage from './pages/OrbitFeaturePage.jsx'
+import WorksPage from './pages/WorksPage.jsx'
+import WorksDetailPage from './pages/WorksDetailPage.jsx'
 import CompanyPage from './pages/CompanyPage.jsx'
 import NewsPage from './pages/NewsPage.jsx'
 import NewsDetailPage from './pages/NewsDetailPage.jsx'
@@ -32,6 +38,12 @@ function ServerApp() {
       <Route element={<Layout />}>
         <Route index element={<HomePage />} />
         <Route path="services" element={<ServicesPage />} />
+        <Route path="services/recruit" element={<ServiceRecruitPage />} />
+        <Route path="services/orbit" element={<ServiceOrbitPage />} />
+        <Route path="services/orbit/:slug" element={<OrbitFeaturePage />} />
+        <Route path="services/fit" element={<ServiceFitPage />} />
+        <Route path="works" element={<WorksPage />} />
+        <Route path="works/:id" element={<WorksDetailPage />} />
         <Route path="company" element={<CompanyPage />} />
         <Route path="news" element={<NewsPage />} />
         <Route path="news/:id" element={<NewsDetailPage />} />
@@ -61,7 +73,7 @@ export const ROUTES = ROUTES_JSON.map((r) => r.path)
 
 export function seo(path) {
   const r = ROUTES_JSON.find((route) => route.path === path)
-  return { path, title: r.title, description: r.description, label: r.label }
+  return { path, title: r.title, description: r.description, label: r.label, crumbs: r.crumbs }
 }
 
 /* ───────────── 記事詳細の SSG（R14-5） ───────────── */
@@ -84,6 +96,7 @@ function articleMeta(item, basePath, listLabel, jsonLdType) {
 export const articleSeo = {
   news: (item) => articleMeta(item, '/news', 'お知らせ', 'NewsArticle'),
   column: (item) => articleMeta(item, '/column', 'コラム', 'BlogPosting'),
+  works: (item) => articleMeta(item, '/works', '実績・事例', 'Article'),
 }
 
 /* ── ビルド時コンテンツ取得（記事詳細・一覧 preload 用） ──
@@ -135,7 +148,7 @@ async function loadSampleJson(slug) {
  * 記事詳細・一覧 preload 用の全公開コンテンツを取得する。
  * upnote.コンテンツ に含まれない slug は取得しない（R9）。
  * 失敗・未設定時は null（呼び出し側は静的ルートのみプリレンダ）。
- * @returns {Promise<{news, columns} | null>}
+ * @returns {Promise<{news, columns, caseStudies} | null>}
  */
 export async function loadPrerenderContent() {
   const useSample = typeof process !== 'undefined' && process.env.PRERENDER_SAMPLE === '1'
@@ -149,12 +162,12 @@ export async function loadPrerenderContent() {
             return null
           })
         : Promise.resolve(null)
-    const [news, columns] = await Promise.all([safe('news'), safe('columns')])
-    if (!news && !columns) return null
+    const [news, columns, caseStudies] = await Promise.all([safe('news'), safe('columns'), safe('case_studies')])
+    if (!news && !columns && !caseStudies) return null
     if (useSample) {
       console.warn('[prerender] PRERENDER_SAMPLE=1: sample JSON を記事としてプリレンダ（本番ビルド使用禁止）')
     }
-    return { news, columns }
+    return { news, columns, caseStudies }
   } catch (err) {
     console.warn('[prerender] UpNote コンテンツ取得に失敗（記事詳細はスキップ）:', err?.message || err)
     return null

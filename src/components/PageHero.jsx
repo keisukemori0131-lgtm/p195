@@ -1,3 +1,4 @@
+import { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import MoonOrbit from './MoonOrbit.jsx'
 import Twinkle from './Twinkle.jsx'
@@ -6,8 +7,9 @@ import Twinkle from './Twinkle.jsx'
  * サブページの見出し帯（リデザイン 2026-10）。
  * 濃紺の宇宙 + 左端に名刺の色ブロックの縦帯 + 右に月と軌道。
  * 左に 欧文ラベル → ページ名（h1）→ パンくず。
+ * @param {Array<{to: string, label: string}>} [crumbs] ホームと現在ページの間に入る階層
  */
-export default function PageHero({ title, eyebrow }) {
+export default function PageHero({ title, eyebrow, crumbs = [] }) {
   return (
     <div className="page-hero space">
       <Twinkle count={18} seed={23} />
@@ -23,6 +25,12 @@ export default function PageHero({ title, eyebrow }) {
         <nav className="breadcrumb breadcrumb--dark" aria-label="パンくず">
           <Link to="/">ホーム</Link>
           <span aria-hidden="true">›</span>
+          {crumbs.map((c) => (
+            <Fragment key={c.to}>
+              <Link to={c.to}>{c.label}</Link>
+              <span aria-hidden="true">›</span>
+            </Fragment>
+          ))}
           <span aria-current="page">{title}</span>
         </nav>
       </div>

@@ -101,7 +101,7 @@ async function fetchAll(slug) {
   return items
 }
 
-const [newsItems, columnItems] = await Promise.all([fetchAll('news'), fetchAll('columns')])
+const [newsItems, columnItems, caseItems] = await Promise.all([fetchAll('news'), fetchAll('columns'), fetchAll('case_studies')])
 
 /* ───────────── llms.txt（AI クローラー向けのサイト要約・AIO） ───────────── */
 
@@ -147,18 +147,19 @@ const pushArticles = (heading, items, dateKey, basePath) => {
   llms.push(`## ${heading}`, '')
   for (const item of items.slice(0, 20)) {
     const d = item?.data ?? {}
-    const title = plain(d.article_title, 120)
+    const title = plain(d.article_title || d.case_title, 120)
     if (!title) continue
     const date = d[dateKey] ? `（${d[dateKey]}）` : ''
-    llms.push(`- ${title}${date}${SITE_URL ? `: ${SITE_URL}${basePath}/${item.id}` : ''}`, `  ${plain(d.subtitle || d.body, 200)}`)
+    llms.push(`- ${title}${date}${SITE_URL ? `: ${SITE_URL}${basePath}/${item.id}` : ''}`, `  ${plain(d.subtitle || d.summary_one_line || d.body || d.body_result, 200)}`)
   }
   llms.push('')
 }
 pushArticles('コラム', columnItems, 'published_date', '/column')
 pushArticles('お知らせ', newsItems, 'notice_date', '/news')
+pushArticles('実績・事例', caseItems, 'date', '/works')
 
 writeFileSync(join(distDir, 'llms.txt'), llms.join('\n'))
-console.log(`[sitemap] llms.txt を生成 (コラム ${columnItems.length} / お知らせ ${newsItems.length})`)
+console.log(`[sitemap] llms.txt を生成 (コラム ${columnItems.length} / お知らせ ${newsItems.length} / 実績・事例 ${caseItems.length})`)
 
 /* ───────────── sitemap.xml ───────────── */
 
@@ -174,6 +175,7 @@ const urls = routes.map((r) => ({ loc: `${SITE_URL}${r.path === '/' ? '/' : r.pa
 const articleUrls = [
   ...newsItems.map((item) => ({ item, basePath: '/news' })),
   ...columnItems.map((item) => ({ item, basePath: '/column' })),
+  ...caseItems.map((item) => ({ item, basePath: '/works' })),
 ].map(({ item, basePath }) => ({
   loc: `${SITE_URL}${basePath}/${item.id}`,
   priority: '0.6',

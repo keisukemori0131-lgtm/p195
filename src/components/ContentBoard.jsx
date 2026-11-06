@@ -157,8 +157,9 @@ function SkeletonGrid() {
  * @param {(items: Array) => void} [onItems] 取得結果を親へ渡す（ItemList 構造化データ用）
  * @param {ReactNode} [head]   一覧の見出し（件数表示と同じ行の左に置く）
  * @param {string} [lead]      見出しの下の説明文
+ * @param {string} [restHeading] 1 ページ目の 2 件目以降の見出し（既定「過去の○○」）
  */
-export default function ContentBoard({ slug, basePath, listLabel, emptyMessage, onItems, head, lead }) {
+export default function ContentBoard({ slug, basePath, listLabel, emptyMessage, onItems, head, lead, restHeading }) {
   const [page, setPage] = useState(1)
   const { data, loading, error, reload } = useContentList(slug, { page, limit: LIMIT })
 
@@ -205,7 +206,7 @@ export default function ContentBoard({ slug, basePath, listLabel, emptyMessage, 
             <>
               <h2 className="board-heading">
                 <span className="mini-blocks" aria-hidden="true" />
-                {isFirstPage ? `過去の${listLabel}` : `${listLabel}一覧`}
+                {isFirstPage ? restHeading || `過去の${listLabel}` : `${listLabel}一覧`}
               </h2>
               <div className="content-grid stagger">
                 {rest.map((item) => (

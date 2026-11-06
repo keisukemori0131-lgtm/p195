@@ -3,7 +3,7 @@
 - **Worker 名: `p195`（仮）** — `wrangler.jsonc` の `name` は Cloudflare ダッシュボードで作成した Worker 名と**完全一致**させること。違う名前で作った場合は `wrangler.jsonc` を書き換えてからデプロイする（不一致だと別 Worker が自動作成され、Build 変数が当たらない）
 - 入力: `顧客YAML/P195.yaml` / ルール: `ホームページ作成/CLAUDE.md`
 - 構成: React 18 + Vite 6.4（`npm ls vite` で確認済み）+ react-router-dom 6 / SSG（ビルド時プリレンダリング）/ Cloudflare Workers 静的アセット
-- UpNote: **パターン B 直叩き・セット 1**（Runtime タブは使わない）/ 有効コンテンツ: `columns`, `news`
+- UpNote: **パターン B 直叩き・セット 1**（Runtime タブは使わない）/ 有効コンテンツ: `columns`, `news`, `case_studies`
 - 問い合わせ: UpNote 問い合わせ API（`formKey: contact`）
 
 ## 自己検証の結果
@@ -122,6 +122,26 @@ cre-comsence.com（ソースは `web-page-dev/crecomsence-homepage`）の**表�
 - 本文に「■ よくある質問」以降があり、`faq` フィールドもある場合は、本文側の FAQ を自動で除いて二重表示を防ぐ
 - [ ] UpNote の columns / news に `summary` `faq` `author_title` などのフィールドが無い場合は、無いまま表示される（エラーにはならない）。AI コラム自動生成の出力にこれらが含まれるか、UpNote 側で確認
 
+## 🛰 実績・事例／サービス詳細／ヘッダーのプルダウン（2026-11-06）
+
+| 追加 | URL | データの場所 |
+|------|-----|--------------|
+| 実績・事例 一覧・詳細 | `/works` `/works/:id` | UpNote 公開 API `case_studies`（項目名は cre-comsence.com と同じ。`src/lib/upnoteContent.js` の `getCase*`） |
+| 求人情報コンサル 詳細 | `/services/recruit` | `src/constants/recruitDetail.js` |
+| REGOLITH ORBIT 詳細 | `/services/orbit` | `src/constants/orbit.js` |
+| 機能詳細 27 ページ | `/services/orbit/:slug` | `src/constants/orbitFeaturePages.js` |
+| 101FIT 詳細 | `/services/fit` | `src/constants/services.js` |
+| ヘッダーのプルダウン・ハンバーガーの子項目 | 全ページ | `src/constants/nav.js` の `SERVICE_NAV_CHILDREN` |
+
+- [ ] **UpNote に `case_studies` を有効化する**: 無効のままだと `/works` は取得エラーの表示になる。0 件のときは「実績・事例は現在準備中です。」と出る
+- [ ] **機能の説明画像は暫定**（`public/images/orbit/screens/`）。cre-comsence.com の画像のコピーで、**UpNote のロゴが写っている**。納品直前に同名ファイルで差し替える（`<slug>.webp` 1536×1024、`-800`、`-480` の 3 種類）
+- [ ] **求人情報コンサルの詳細は仮の内容**。対応媒体・料金・進め方が確定したら `recruitDetail.js` を書き換える。実績の数字・お客様の声は書いていない
+- [ ] **REGOLITH ORBIT 詳細の cre-comsence.com/web との違い**（`orbit.js` の冒頭にも記載）: 金額はすべて外した（特記事項「料金は掲載しない」）。「無料の草案」「補助金」「提携カメラマン」「作った本人が窓口」「独自開発」「最低契約期間」は CRE-COMSENCE 固有の約束のため書いていない。**載せるなら顧客に確認**
+- [ ] 残した約束も確認する: 「最大10ページ」「公開まで目安3〜5週間」「サイト草案を先に作る」「管理者1名は月額に含む」
+- [ ] 機能本文の例の「○○ 札幌」は「○○ 石狩」に置き換えた
+- [ ] 101FIT の詳細は確かな事実だけのため短い。営業時間・設備などの原稿があれば追加する
+- `public/upnote-local/case_studies.sample.json` は開発用の【サンプル】。`npm run build:sample` 以外の本番ビルドでは使われない
+
 ## 🧑‍💼 人手判断ポイント（要確認・要決定）
 
 ### 掲載情報（R2 により未掲載にしたもの・推測で書いていないもの）
@@ -214,7 +234,7 @@ cre-comsence.com（ソースは `web-page-dev/crecomsence-homepage`）の**表�
 
 - [ ] **UpNote 接続未設定**: 公開 API キー未発行・未設定。キー未設定のままだとお知らせ・コラムは「現在情報を取得できません」、**問い合わせフォームも送信できない**
 - [ ] UpNote 管理画面の**許可オリジン**に `https://p195.<account>.workers.dev`（実際の Worker 名）と `https://<本番ドメイン>` を登録（未登録だと CORS で取得・送信とも失敗）
-- [ ] コンテンツタイプ「お知らせ（news）」「コラム（columns）」が有効になっていること
+- [ ] コンテンツタイプ「お知らせ（news）」「コラム（columns）」「実績・事例（case_studies）」が有効になっていること
 - [ ] 問い合わせ通知は UpNote ログイン用メールアドレスに届く（サイト側に送信先設定は無い）。受信箱・LINE 通知で確認できる
 - [ ] エスカレーション: 本番で `API_KEY_INVALID` / `API_KEY_INACTIVE` / `FORBIDDEN` が出たら UpNote 管理画面でキーの有効状態・許可オリジンを確認
 

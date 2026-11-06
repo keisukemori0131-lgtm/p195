@@ -11,6 +11,7 @@ import {
   getContentDescription,
   getContentImageUrls,
   getContentFieldEntries,
+  CASE_SKIP_KEYS,
   getContentDateRaw,
   formatContentDate,
 } from '../lib/upnoteContent.js'
@@ -25,6 +26,8 @@ import ArticleAuthorCard, { authorPhoto } from './ArticleAuthorCard.jsx'
 import MoonOrbit from './MoonOrbit.jsx'
 import Twinkle from './Twinkle.jsx'
 import ArticleCta from './ArticleCta.jsx'
+import CaseStudyBody from './CaseStudyBody.jsx'
+import CtaBand from './CtaBand.jsx'
 import { SITE, SITE_LABEL, SITE_URL } from '../constants/site.js'
 
 /** 読み込み中・見つからないときの表示枠 */
@@ -46,9 +49,10 @@ function StatusBox({ children }) {
  * @param {string|number} id   記事 ID（useParams 由来）
  * @param {string} basePath    一覧のパス（例 '/news'）
  * @param {string} listLabel   一覧の名称（例 'お知らせ'）
- * @param {string} jsonLdType  'NewsArticle' | 'BlogPosting'
+ * @param {string} jsonLdType  'NewsArticle' | 'BlogPosting' | 'Article'
+ * @param {boolean} [caseStudy] 実績・事例（本文を CaseStudyBody で組み立てる）
  */
-export default function ArticleDetail({ id, basePath, listLabel, jsonLdType = 'NewsArticle' }) {
+export default function ArticleDetail({ id, basePath, listLabel, jsonLdType = 'NewsArticle', caseStudy = false }) {
   const { data: item, error, loading, reload } = useContentById(id)
 
   const notFound = error && (error.errorCode === 'NOT_FOUND' || error.status === 404)
@@ -99,7 +103,8 @@ export default function ArticleDetail({ id, basePath, listLabel, jsonLdType = 'N
   const summary = getContentLead(item)
   const faqText = item.data?.faq
   const faqItems = parseFaqText(faqText)
-  const rawBody = getContentBody(item)
+  // 実績・事例は課題・取り組み・成果を別に描画するので、本文は data.body だけを見る
+  const rawBody = caseStudy ? item.data?.body || '' : getContentBody(item)
   const body = stripLeadingSummary(faqText ? stripEmbeddedFaqSection(rawBody) : rawBody, summary)
   const tags = getContentTags(item)
   const category = getContentCategory(item)
@@ -107,7 +112,7 @@ export default function ArticleDetail({ id, basePath, listLabel, jsonLdType = 'N
   const date = formatContentDate(item)
   const dateRaw = getContentDateRaw(item)
   const images = getContentImageUrls(item)
-  const entries = getContentFieldEntries(item)
+  const entries = getContentFieldEntries(item, caseStudy ? CASE_SKIP_KEYS : undefined)
 
   const pagePath = `${basePath}/${item.id}`
   const canonical = SITE_URL ? `${SITE_URL}${pagePath}` : null
@@ -201,12 +206,12 @@ export default function ArticleDetail({ id, basePath, listLabel, jsonLdType = 'N
 
               {summary && (
                 <div className="article-sheet__summary">
-                  <span className="article-sheet__summary-label">この記事の要約</span>
+                  <span className="article-sheet__summary-label">{caseStudy ? 'この事例の概要' : 'この記事の要約'}</span>
                   <p>{summary}</p>
                 </div>
               )}
 
-              <ArticleRichBody body={body} />
+              {caseStudy ? <CaseStudyBody item={item} body={body} /> : <ArticleRichBody body={body} />}
 
               {entries.length > 0 && (
                 <section className="article-sheet__extra" aria-labelledby="article-extra-title">
@@ -251,6 +256,7 @@ export default function ArticleDetail({ id, basePath, listLabel, jsonLdType = 'N
 
         {/* 03 導線（コラムのみ・内容に合わせて振り分け） */}
         {jsonLdType === 'BlogPosting' && <ArticleCta item={item} />}
+        {caseStudy && <CtaBand />}
       </article>
     </>
   )

@@ -1,7 +1,17 @@
+import { SERVICES } from './services.js'
+
 // グローバルナビ — ヘッダーとフッターメニューの単一の正（R16-1）
 // アクセスは独立ページにせず会社概要（/company#access）に統合する
+// サービスの各内容（ヘッダーではプルダウン、ハンバーガーでは下に常時表示）
+export const SERVICE_NAV_CHILDREN = SERVICES.map((s) => ({
+  label: s.name,
+  to: `/services/${s.id}`,
+  note: s.navNote,
+}))
+
 export const MAIN_NAV = [
-  { label: 'サービス', to: '/services' },
+  { label: 'サービス', to: '/services', children: SERVICE_NAV_CHILDREN },
+  { label: '実績・事例', to: '/works' },
   { label: '会社概要', to: '/company' },
   { label: 'お知らせ', to: '/news' },
   { label: 'コラム', to: '/column' },

@@ -104,7 +104,9 @@ function OrbitFeatures() {
                   <span className={`icon-badge icon-badge--${FEATURE_TONES[i]}`}>
                     <Icon name={FEATURE_ICONS[c.key]} size={17} />
                   </span>
-                  {f.name}
+                  <Link to={`/services/orbit/${f.slug}`} onClick={scrollToTop}>
+                    {f.name}
+                  </Link>
                 </p>
                 <p className="change-card__pain">
                   <span className="visually-hidden">困りごと：</span>
@@ -162,7 +164,15 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <ServiceBlock s={recruit}>
+      <ServiceBlock
+        s={recruit}
+        body={
+          <Link to="/services/recruit" className="btn btn--navy" onClick={scrollToTop}>
+            求人情報コンサルの詳細を見る
+            <Icon name="arrow-right" size={16} />
+          </Link>
+        }
+      >
         <div className="point-grid stagger">
           {recruit.points.map((p, i) => (
             <div className="point-card accent-card" key={p.title}>
@@ -185,10 +195,16 @@ export default function ServicesPage() {
         reverse
         tint
         body={
-          <a href={orbit.url} target="_blank" rel="noopener noreferrer" className="btn btn--navy">
-            {orbit.name} 公式サイト
-            <Icon name="arrow-right" size={16} />
-          </a>
+          <div className="btn-row">
+            <Link to="/services/orbit" className="btn btn--navy" onClick={scrollToTop}>
+              {orbit.name} の詳細を見る
+              <Icon name="arrow-right" size={16} />
+            </Link>
+            <a href={orbit.url} target="_blank" rel="noopener noreferrer" className="btn btn--ghost">
+              公式サイト
+              <Icon name="arrow-right" size={16} />
+            </a>
+          </div>
         }
       >
         <OrbitFeatures />
@@ -204,7 +220,11 @@ export default function ServicesPage() {
               所在地: {fit.address}
             </p>
             <div className="btn-row">
-              <Link to="/company#access" className="btn btn--navy">
+              <Link to="/services/fit" className="btn btn--navy" onClick={scrollToTop}>
+                {fit.name} の詳細を見る
+                <Icon name="arrow-right" size={16} />
+              </Link>
+              <Link to="/company#access" className="btn btn--ghost">
                 アクセスを見る
               </Link>
               <a href={fit.url} target="_blank" rel="noopener noreferrer" className="btn btn--ghost">

@@ -41,10 +41,10 @@ export const CONTENT_TYPE_FOR = {
 
 /**
  * この顧客が UpNote に実際に登録するコンテンツタイプ一覧。
- * 顧客YAML `upnote.コンテンツ: コラム, お知らせ` をそのまま書き出したもの。
+ * 顧客YAML `upnote.コンテンツ: コラム, お知らせ` に、実績・事例（/works）を追加したもの。
  * ページコードはこの配列に含まれていない slug を取得しに行かない（必ず空になるため）。
  */
-export const ENABLED_CONTENT_TYPES = ['columns', 'news']
+export const ENABLED_CONTENT_TYPES = ['columns', 'news', 'case_studies']
 
 /** その contentTypeSlug がこの顧客で有効か */
 export const isEnabled = (slug) => ENABLED_CONTENT_TYPES.includes(slug)

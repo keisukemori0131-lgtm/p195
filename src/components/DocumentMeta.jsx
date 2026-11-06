@@ -106,6 +106,7 @@ export default function DocumentMeta({ title, description, ogType = 'website', n
             title: finalTitle,
             description: finalDesc,
             label: routeSeo?.label,
+            crumbs: routeSeo?.crumbs,
             siteUrl: SITE_URL,
             site: SITE,
           }),

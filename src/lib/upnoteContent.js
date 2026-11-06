@@ -5,6 +5,8 @@
 //   news   : notice_date / tag_name / article_title / subtitle / body / thumbnail / attachment_*
 //   faq    : category / question / answer / tag_name
 //   columns: article_title / subtitle / category / tag_name / author_name / body / published_date / attachment_*
+//   case_studies: case_title / summary_one_line / client_display_name / industry / location_region /
+//            body_challenge / body_approach / body_result / testimonial_quote など（cre-comsence.com と同じ項目）
 //   events : event_title / subtitle / category / tag_name / event_date / start_time / end_time /
 //            venue_name / address / entry_fee / capacity / application_deadline / organizer /
 //            contact_info / details / application_url / attachment_*
@@ -35,15 +37,19 @@ export function isIsoDate(v) {
 }
 
 export const getContentTitle = (item) =>
-  item?.data?.article_title || item?.data?.event_title || item?.data?.question || item?.title || ''
+  item?.data?.article_title || item?.data?.case_title || item?.data?.event_title || item?.data?.question || item?.title || ''
 export const getContentSubtitle = (item) => item?.data?.subtitle || ''
-export const getContentLead = (item) => item?.data?.lead || item?.data?.summary || ''
+export const getContentLead = (item) =>
+  item?.data?.lead || item?.data?.summary || item?.data?.summary_one_line || item?.data?.excerpt || ''
 export const getContentBody = (item) =>
   item?.data?.body ||
   item?.data?.body_html ||
   item?.data?.details ||
   item?.data?.description ||
   item?.data?.answer ||
+  item?.data?.body_result ||
+  item?.data?.body_approach ||
+  item?.data?.body_challenge ||
   ''
 
 export const getContentCategory = (item) => item?.data?.category || ''
@@ -81,7 +87,7 @@ export function contentTime(item) {
 
 export function getContentDateRaw(item) {
   // 公開 API に publishedAt は無い（createdAt / updatedAt のみ）
-  return item?.data?.notice_date || item?.data?.published_date || item?.createdAt || ''
+  return item?.data?.notice_date || item?.data?.published_date || item?.data?.date || item?.createdAt || ''
 }
 
 function formatAnyDate(raw) {
@@ -110,10 +116,11 @@ export function getEventTimeRange(item) {
 }
 
 export function getContentTags(item) {
-  const t = item?.data?.tag_name
+  const t = item?.data?.tag_name || item?.data?.tags
   if (!t) return []
+  if (Array.isArray(t)) return t.map((s) => String(s).trim()).filter(Boolean)
   return String(t)
-    .split(/[,、]/)
+    .split(/[,、\n]/)
     .map((s) => s.trim())
     .filter(Boolean)
 }
@@ -132,7 +139,7 @@ export function getContentImageUrls(item) {
     urls.push(url)
   }
   const d = item?.data || {}
-  for (const key of ['thumbnail', 'attachment_1', 'attachment_2', 'attachment_3']) add(d[key])
+  for (const key of ['thumbnail', 'image', 'attachment_1', 'attachment_2', 'attachment_3', 'attachment_4']) add(d[key])
   if (Array.isArray(item?.mediaFiles)) {
     for (const m of item.mediaFiles) add(m?.fileUrl || m?.url)
   }
@@ -183,6 +190,90 @@ export const DEFAULT_MODAL_SKIP_KEYS = [
   // 予約の運用フラグ（members・R19 §7）。来訪者向け情報ではないため出さない
   'reservable',
   'work_days',
+]
+
+/* ───────────── 実績・事例（case_studies） ───────────── */
+
+const text = (v) => (typeof v === 'string' ? v.trim() : '')
+
+/** 見出し帯の下に並べる基本情報 */
+export function getCaseFacts(item) {
+  const d = item?.data || {}
+  const start = text(d.service_start_date) && formatAnyDate(text(d.service_start_date))
+  const end = text(d.service_end_date) && formatAnyDate(text(d.service_end_date))
+  const period = text(d.project_period_label) || (start || end ? `${start} 〜 ${end}`.trim() : '')
+  return [
+    { label: 'お客様', value: text(d.client_display_name) || text(d.client) || text(d.client_name) },
+    { label: '業種', value: text(d.industry) },
+    { label: '地域', value: text(d.location_region) },
+    { label: '期間', value: period },
+    { label: '規模', value: text(d.project_scale) },
+    { label: '使用ツール', value: text(d.tools_and_stack) },
+  ].filter((f) => f.value)
+}
+
+/** 課題 → 取り組み → 成果 などの本文（空の項目は出さない） */
+export function getCaseStory(item) {
+  const d = item?.data || {}
+  return [
+    { title: '課題', body: text(d.body_challenge) || text(d.challenge) },
+    { title: '取り組み', body: text(d.body_approach) || text(d.approach) },
+    { title: '成果', body: text(d.body_result) || text(d.outcome) },
+    { title: '納品物・成果物', body: text(d.deliverables_summary) },
+    { title: '体制', body: text(d.stakeholders_roles) },
+    { title: '振り返り', body: text(d.lessons_learned) },
+  ].filter((s) => s.body)
+}
+
+export function getCaseTestimonial(item) {
+  const d = item?.data || {}
+  const quote = text(d.testimonial_quote) || text(d.testimonial)
+  if (!quote) return null
+  const name = text(d.testimonial_author_name)
+  const title = text(d.testimonial_author_title)
+  return { quote, author: [title, name].filter(Boolean).join(' ') }
+}
+
+export function getCaseLinks(item) {
+  const d = item?.data || {}
+  return [
+    { label: '関連するサービスを見る', url: text(d.related_service_url) },
+    { label: '関連する記事を読む', url: text(d.external_article_url) },
+  ].filter((l) => l.url)
+}
+
+/** 実績・事例: 上の関数で描画済みの項目は「詳細情報」グリッドから除く */
+export const CASE_SKIP_KEYS = [
+  ...DEFAULT_MODAL_SKIP_KEYS,
+  'case_title',
+  'summary_one_line',
+  'excerpt',
+  'image',
+  'attachment_4',
+  'tags',
+  'date',
+  'featured',
+  'client',
+  'client_name',
+  'client_display_name',
+  'industry',
+  'location_region',
+  'project_period_label',
+  'service_start_date',
+  'service_end_date',
+  'project_scale',
+  'tools_and_stack',
+  'body_challenge',
+  'body_approach',
+  'body_result',
+  'deliverables_summary',
+  'stakeholders_roles',
+  'lessons_learned',
+  'testimonial_quote',
+  'testimonial_author_name',
+  'testimonial_author_title',
+  'related_service_url',
+  'external_article_url',
 ]
 
 /** events 用: 開催日・開催時間はメタ行で描画済みなので「開催概要」グリッドから除く */

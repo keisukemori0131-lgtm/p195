@@ -131,7 +131,7 @@ export default function HomePage() {
                 <ul className="service-group__cards stagger">
                   {g.items.map((s) => (
                     <li key={s.id}>
-                      <Link to={`/services#${s.id}`} className="svc-card">
+                      <Link to={`/services/${s.id}`} className="svc-card">
                         <span className="svc-card__media">
                           <img src={publicUrl(s.cover.src)} alt="" width={800} height={600} loading="lazy" decoding="async" />
                         </span>
@@ -170,7 +170,7 @@ export default function HomePage() {
               REGOLITH ORBIT は、つくった後の更新・問い合わせ対応・予約・分析まで回し続ける仕組みです。
               パソコンを開く時間がない日でも、LINEから続けられます。
             </p>
-            <Link to="/services#orbit" className="btn btn--outline-light" onClick={scrollToTop}>
+            <Link to="/services/orbit" className="btn btn--outline-light" onClick={scrollToTop}>
               REGOLITH ORBIT でできることを見る
               <Icon name="arrow-right" size={16} />
             </Link>

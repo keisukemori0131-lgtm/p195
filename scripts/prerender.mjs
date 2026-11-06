@@ -90,18 +90,18 @@ function abs(path) {
 const IMAGE_EXT = /\.(png|jpe?g|gif|webp|svg|avif)(\?|$)/i
 
 function buildHeadExtras(meta, preload) {
-  const { path, label, article, noindex } = meta
+  const { path, label, crumbs, article, noindex } = meta
   const canonical = noindex ? null : abs(path)
   const robots = noindex || !SITE_PUBLIC ? 'noindex, nofollow' : 'index, follow'
 
   // WebSite / LocalBusiness / ページ / パンくずの @graph（DocumentMeta.jsx と同じ関数）
   const jsonLd = noindex
     ? []
-    : [buildPageJsonLd({ path: article ? null : path, title: meta.title, description: meta.description, label, siteUrl: SITE_URL, site: SITE })]
+    : [buildPageJsonLd({ path: article ? null : path, title: meta.title, description: meta.description, label, crumbs, siteUrl: SITE_URL, site: SITE })]
 
   if (article) {
     const { item, listLabel, basePath, jsonLdType } = article
-    const title = item?.data?.article_title || ''
+    const title = item?.data?.article_title || item?.data?.case_title || ''
     const heroRaw = item?.data?.thumbnail || item?.data?.attachment_1 || ''
     const hero = IMAGE_EXT.test(heroRaw) ? (heroRaw.startsWith('http') ? heroRaw : abs(heroRaw) || heroRaw) : ''
     jsonLd.push(buildArticleJsonLd({ item, type: jsonLdType, title, image: hero, canonical, site: SITE }))
@@ -127,7 +127,11 @@ function buildHeadExtras(meta, preload) {
 
   // 一覧の ItemList（src/lib/jsonld.js と同内容）
   const lists = preload?.lists ?? {}
-  const listSpec = { '/news': ['news', '/news', 'お知らせ一覧'], '/column': ['columns', '/column', 'コラム一覧'] }
+  const listSpec = {
+    '/news': ['news', '/news', 'お知らせ一覧'],
+    '/column': ['columns', '/column', 'コラム一覧'],
+    '/works': ['case_studies', '/works', '実績・事例一覧'],
+  }
   if (listSpec[path]) {
     const [slug, base, name] = listSpec[path]
     const items = lists[slug]?.items ?? []
@@ -140,7 +144,7 @@ function buildHeadExtras(meta, preload) {
         itemListElement: items.map((item, i) => ({
           '@type': 'ListItem',
           position: i + 1,
-          name: item?.data?.article_title || '',
+          name: item?.data?.article_title || item?.data?.case_title || '',
           ...(abs(`${base}/${item.id}`) ? { url: abs(`${base}/${item.id}`) } : {}),
         })),
       })
@@ -240,6 +244,7 @@ async function main() {
     }
     if (routePath === '/news' && content.news) lists.news = firstPage(content.news, LIST_PAGE_SIZE)
     if (routePath === '/column' && content.columns) lists.columns = firstPage(content.columns, LIST_PAGE_SIZE)
+    if (routePath === '/works' && content.caseStudies) lists.case_studies = firstPage(content.caseStudies, LIST_PAGE_SIZE)
     if (Object.keys(lists).length) preload.lists = lists
     return preload
   }
@@ -248,6 +253,7 @@ async function main() {
     ? [
         ...(content.news?.items ?? []).map((item) => ({ seo: articleSeo.news(item), preload: { path: `/news/${item.id}`, item } })),
         ...(content.columns?.items ?? []).map((item) => ({ seo: articleSeo.column(item), preload: { path: `/column/${item.id}`, item } })),
+        ...(content.caseStudies?.items ?? []).map((item) => ({ seo: articleSeo.works(item), preload: { path: `/works/${item.id}`, item } })),
       ]
     : []
 
